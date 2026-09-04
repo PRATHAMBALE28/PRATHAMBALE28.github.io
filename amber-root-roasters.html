@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amber Root Roasters — Small-Batch Coffee, Koregaon Park</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241A14;
+    --ink-soft:#35271D;
+    --cream:#F3EAD8;
+    --cream-dim:#C9BBA3;
+    --copper:#B8763E;
+    --copper-bright:#D89456;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400;letter-spacing:0.01em;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--copper);color:var(--ink);}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(36,26,20,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(201,187,163,0.12);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;}
+  .brand{font-family:'Fraunces',serif;font-size:1.3rem;letter-spacing:0.02em;}
+  .brand span{color:var(--copper-bright);}
+  .navlinks{display:flex;gap:36px;font-size:0.86rem;letter-spacing:0.03em;}
+  .navlinks a{opacity:0.82;transition:opacity .25s, color .25s;position:relative;}
+  .navlinks a:hover{opacity:1;color:var(--copper-bright);}
+  .nav-cta{
+    border:1px solid var(--copper);
+    padding:9px 20px;border-radius:2px;
+    font-size:0.82rem;letter-spacing:0.03em;
+    transition:background .25s, color .25s;
+  }
+  .nav-cta:hover{background:var(--copper);color:var(--ink);}
+
+  /* HERO */
+  header.hero{
+    padding:150px 0 100px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    display:flex;align-items:center;gap:14px;
+    color:var(--cream-dim);font-size:0.82rem;letter-spacing:0.08em;
+    margin-bottom:26px;
+  }
+  .hero-eyebrow::before{content:'';width:34px;height:1px;background:var(--copper);display:block;}
+  .hero h1{
+    font-size:clamp(2.6rem,5vw,4.1rem);
+    line-height:1.06;
+    margin-bottom:26px;
+  }
+  .hero h1 em{
+    font-style:italic;color:var(--copper-bright);
+  }
+  .hero p.lead{
+    color:var(--cream-dim);
+    font-size:1.06rem;
+    max-width:440px;
+    margin-bottom:38px;
+  }
+  .hero-actions{display:flex;gap:18px;align-items:center;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--copper);color:var(--ink);
+    padding:15px 30px;border-radius:2px;
+    font-size:0.9rem;letter-spacing:0.03em;font-weight:500;
+    transition:background .25s, transform .25s;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:var(--copper-bright);transform:translateY(-1px);}
+  .btn-ghost{
+    color:var(--cream);font-size:0.9rem;letter-spacing:0.02em;
+    border-bottom:1px solid var(--cream-dim);padding-bottom:2px;
+    transition:border-color .25s, color .25s;
+  }
+  .btn-ghost:hover{border-color:var(--copper-bright);color:var(--copper-bright);}
+  .hero-media{position:relative;}
+  .hero-media img{
+    width:100%;height:520px;object-fit:cover;
+    border-radius:4px;
+  }
+  .hero-media::after{
+    content:'';position:absolute;inset:0;
+    border:1px solid rgba(216,148,86,0.35);
+    border-radius:4px;
+    transform:translate(16px,16px);
+    z-index:-1;
+  }
+  .hero-tag{
+    position:absolute;bottom:-24px;left:-24px;
+    background:var(--ink-soft);
+    border:1px solid rgba(201,187,163,0.18);
+    padding:18px 22px;border-radius:3px;
+    max-width:230px;
+  }
+  .hero-tag .num{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--copper-bright);}
+  .hero-tag p{font-size:0.78rem;color:var(--cream-dim);margin-top:4px;}
+
+  section{padding:110px 0;}
+  .section-head{margin-bottom:60px;max-width:600px;}
+  .section-eyebrow{
+    color:var(--copper-bright);font-size:0.82rem;letter-spacing:0.08em;margin-bottom:14px;display:block;
+  }
+  .section-head h2{font-size:clamp(2rem,3.4vw,2.7rem);line-height:1.15;}
+  .section-head p{color:var(--cream-dim);margin-top:18px;font-size:1rem;max-width:520px;}
+
+  /* TRUST STRIP */
+  .trust{padding:44px 0;border-bottom:1px solid rgba(201,187,163,0.12);}
+  .trust-inner{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:40px;flex-wrap:wrap;
+  }
+  .trust-stars{display:flex;align-items:center;gap:12px;font-size:0.92rem;color:var(--cream-dim);white-space:nowrap;}
+  .trust-stars .stars{color:var(--copper-bright);letter-spacing:2px;font-size:1rem;}
+  .trust-quotes{display:flex;gap:44px;flex-wrap:wrap;}
+  .trust-quotes p{
+    font-family:'Fraunces',serif;font-style:italic;font-size:0.98rem;
+    color:var(--cream);max-width:340px;line-height:1.5;
+  }
+  .trust-quotes p span{
+    display:block;margin-top:8px;font-family:'Inter',sans-serif;font-style:normal;
+    font-size:0.8rem;color:var(--copper-bright);letter-spacing:0.02em;
+  }
+
+  /* VALUE PROPS */
+  .values{padding:80px 0;}
+  .values-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:50px;
+  }
+  .value-item{border-top:1px solid rgba(201,187,163,0.2);padding-top:22px;}
+  .value-num{font-family:'Fraunces',serif;color:rgba(216,148,86,0.45);font-size:1.3rem;margin-bottom:10px;}
+  .value-item h4{font-size:1.2rem;margin-bottom:10px;font-weight:400;}
+  .value-item p{color:var(--cream-dim);font-size:0.92rem;}
+
+  /* OUR STORY */
+  .story{background:var(--ink-soft);}
+  .story-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:center;}
+  .story-grid img{width:100%;height:420px;object-fit:cover;border-radius:4px;}
+  .story-copy p{color:var(--cream-dim);margin-top:18px;max-width:480px;}
+  .story-sign{
+    margin-top:28px;font-family:'Fraunces',serif;font-style:italic;
+    color:var(--copper-bright);font-size:1.1rem;
+  }
+
+  /* SIGNATURES */
+  .signatures{background:var(--ink-soft);}
+  .sig-list{display:flex;flex-direction:column;}
+  .sig-item{
+    display:grid;
+    grid-template-columns:100px 1fr 200px;
+    gap:36px;
+    align-items:center;
+    padding:34px 0;
+    border-top:1px solid rgba(201,187,163,0.14);
+    transition:padding-left .3s;
+  }
+  .sig-item:last-child{border-bottom:1px solid rgba(201,187,163,0.14);}
+  .sig-item:hover{padding-left:14px;}
+  .sig-num{font-family:'Fraunces',serif;font-size:2.6rem;color:rgba(216,148,86,0.4);}
+  .sig-body h3{font-size:1.5rem;margin-bottom:8px;}
+  .sig-body p{color:var(--cream-dim);font-size:0.94rem;max-width:460px;}
+  .sig-item img{width:200px;height:130px;object-fit:cover;border-radius:3px;}
+
+  /* MENU */
+  .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+  .menu-col h3{
+    font-size:1.1rem;color:var(--copper-bright);
+    letter-spacing:0.04em;margin-bottom:24px;
+    padding-bottom:12px;border-bottom:1px solid rgba(201,187,163,0.18);
+  }
+  .menu-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:16px 0;border-bottom:1px dashed rgba(201,187,163,0.16);
+    gap:20px;
+  }
+  .menu-row .m-name{font-size:1.02rem;}
+  .menu-row .m-desc{color:var(--cream-dim);font-size:0.82rem;display:block;margin-top:4px;}
+  .menu-row .m-price{font-family:'Fraunces',serif;color:var(--copper-bright);white-space:nowrap;}
+
+  /* GALLERY */
+  .gallery{background:var(--ink-soft);}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .gallery-grid img{
+    width:100%;height:260px;object-fit:cover;border-radius:3px;
+    filter:grayscale(15%);
+    transition:filter .3s, transform .3s;
+  }
+  .gallery-grid img:hover{filter:grayscale(0%);transform:scale(1.02);}
+  .gallery-grid a:nth-child(2){margin-top:32px;}
+
+  /* FAQ */
+  .faq-list{max-width:760px;}
+  .faq-item{border-bottom:1px solid rgba(201,187,163,0.16);padding:26px 0;}
+  .faq-q{
+    display:flex;justify-content:space-between;align-items:center;
+    cursor:pointer;font-size:1.08rem;font-family:'Fraunces',serif;
+  }
+  .faq-q .plus{color:var(--copper-bright);font-size:1.3rem;transition:transform .25s;font-family:'Inter',sans-serif;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0;overflow:hidden;
+    color:var(--cream-dim);font-size:0.94rem;
+    transition:max-height .35s ease, margin-top .35s ease;
+  }
+  .faq-item.open .faq-a{max-height:200px;margin-top:14px;}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:0.8rem;color:var(--cream-dim);margin-bottom:8px;letter-spacing:0.03em;}
+  .field input, .field textarea{
+    width:100%;background:transparent;
+    border:1px solid rgba(201,187,163,0.3);
+    color:var(--cream);padding:13px 14px;border-radius:2px;
+    font-family:'Inter',sans-serif;font-size:0.94rem;
+  }
+  .field input:focus, .field textarea:focus{outline:none;border-color:var(--copper-bright);}
+  .map-block{
+    background:var(--ink-soft);border-radius:4px;padding:32px;
+    height:100%;display:flex;flex-direction:column;justify-content:space-between;
+    border:1px solid rgba(201,187,163,0.14);
+  }
+  .map-visual{
+    height:200px;border-radius:3px;margin-bottom:24px;
+    background:#E4DEC8;
+    position:relative;overflow:hidden;
+  }
+  .map-park{
+    position:absolute;top:10%;left:6%;width:34%;height:38%;
+    background:#B9C99A;border-radius:6px;
+  }
+  .map-water{
+    position:absolute;bottom:-10%;right:-8%;width:46%;height:46%;
+    background:#9FC2C9;border-radius:50%;
+  }
+  .map-blocks{
+    position:absolute;inset:0;
+  }
+  .map-blocks span{
+    position:absolute;background:#D3CBAE;border:1px solid #C4BB9C;border-radius:2px;
+  }
+  .map-roads{
+    position:absolute;inset:0;
+  }
+  .map-roads i{
+    position:absolute;background:#FBF8EF;box-shadow:0 0 0 1px #D8D0B6;
+    display:block;
+  }
+  .map-route{
+    position:absolute;height:5px;background:var(--copper);border-radius:3px;
+    box-shadow:0 0 0 2px rgba(184,118,62,0.25);
+    transform-origin:left center;z-index:1;
+  }
+  .map-visual .pin{
+    position:absolute;top:46%;left:53%;transform:translate(-50%,-85%);
+    font-size:2.1rem;filter:drop-shadow(0 4px 6px rgba(0,0,0,0.35));z-index:3;
+  }
+  .map-visual .pin-ring{
+    position:absolute;top:46%;left:53%;width:16px;height:16px;
+    background:rgba(184,118,62,0.28);border-radius:50%;
+    transform:translate(-50%,-50%);z-index:2;
+  }
+  .map-label{
+    position:absolute;bottom:12px;left:14px;
+    font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;
+    color:#4A4030;font-weight:600;
+    background:rgba(255,255,255,0.72);padding:4px 10px;border-radius:20px;
+  }
+  .map-compass{
+    position:absolute;top:12px;right:12px;width:26px;height:26px;
+    background:rgba(255,255,255,0.85);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.7rem;color:#4A4030;font-weight:700;
+  }
+  .addr-line{display:flex;gap:12px;margin-bottom:14px;font-size:0.92rem;color:var(--cream-dim);}
+  .addr-line strong{color:var(--cream);font-weight:500;min-width:80px;display:inline-block;}
+
+  /* NEWSLETTER */
+  .newsletter{background:var(--copper);color:var(--ink);text-align:center;padding:90px 0;}
+  .newsletter h2{color:var(--ink);font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:14px;}
+  .newsletter p{max-width:480px;margin:0 auto 34px;opacity:0.85;}
+  .newsletter-form{display:flex;justify-content:center;gap:12px;max-width:440px;margin:0 auto;flex-wrap:wrap;}
+  .newsletter-form input{
+    flex:1;min-width:220px;padding:15px 18px;border:none;border-radius:2px;
+    font-family:'Inter',sans-serif;font-size:0.94rem;
+  }
+  .newsletter-form button{
+    background:var(--ink);color:var(--cream);border:none;
+    padding:15px 28px;border-radius:2px;font-size:0.9rem;letter-spacing:0.03em;
+    cursor:pointer;transition:background .25s;
+  }
+  .newsletter-form button:hover{background:var(--ink-soft);}
+
+  /* FOOTER */
+  footer{padding:70px 0 40px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px;}
+  .footer-grid h4{font-size:0.9rem;color:var(--copper-bright);letter-spacing:0.04em;margin-bottom:18px;}
+  .footer-grid ul{list-style:none;}
+  .footer-grid li{margin-bottom:10px;}
+  .footer-grid li a{color:var(--cream-dim);font-size:0.9rem;transition:color .25s;}
+  .footer-grid li a:hover{color:var(--copper-bright);}
+  .footer-bottom{
+    border-top:1px solid rgba(201,187,163,0.14);
+    padding-top:26px;display:flex;justify-content:space-between;
+    font-size:0.8rem;color:var(--cream-dim);flex-wrap:wrap;gap:10px;
+  }
+
+  @media (max-width:900px){
+    .hero-grid, .menu-grid, .contact-grid, .story-grid, .values-grid{grid-template-columns:1fr;}
+    .hero-media{margin-top:40px;}
+    .navlinks{display:none;}
+    .trust-inner{flex-direction:column;align-items:flex-start;}
+    .story-grid img{height:280px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-grid a:nth-child(2), .gallery-grid a:nth-child(4){margin-top:0;}
+    .sig-item{grid-template-columns:60px 1fr;}
+    .sig-item img{display:none;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  @media (max-width:480px){
+    .wrap{padding:0 20px;}
+    nav .wrap{height:64px;}
+    .brand{font-size:1.05rem;}
+    .nav-cta{padding:7px 14px;font-size:0.74rem;}
+    .hero{padding:120px 0 70px;}
+    .hero-tag{max-width:170px;padding:14px 16px;left:-12px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Amber Root <span>Roasters</span></div>
+    <div class="navlinks">
+      <a href="#signatures">Signatures</a>
+      <a href="#story">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Visit</a>
+    </div>
+    <a href="#contact" class="nav-cta">Find Us</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">SMALL-BATCH ROASTERY — KOREGAON PARK</div>
+      <h1>Coffee, roasted<br>with <em>intention</em>.</h1>
+      <p class="lead">We source green beans directly from three family farms, roast in batches under 12kg, and pour every cup like it's the only one that matters.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">View the Menu</a>
+        <a href="#contact" class="btn-ghost">Get Directions</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1583165278997-0250ea5d72e2?auto=format&fit=crop&w=1200&q=90" alt="Espresso pouring fresh into a glass at Amber Root Roasters">
+      <div class="hero-tag">
+        <div class="num">12kg</div>
+        <p>Max batch size — small enough to taste the difference, every roast.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="trust">
+  <div class="wrap trust-inner">
+    <div class="trust-stars">
+      <span class="stars">★★★★★</span>
+      <span>4.8 from 340+ regulars on Google</span>
+    </div>
+    <div class="trust-quotes">
+      <p>“Been coming here since they opened — the cortado ruined every other cafe in Koregaon Park for me.”<span>— Ananya R.</span></p>
+      <p>“First place in Pune where the barista actually talks beans with you, not just orders.”<span>— Rohit M.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="wrap values-grid">
+    <div class="value-item">
+      <div class="value-num">01</div>
+      <h4>Direct-Trade Sourcing</h4>
+      <p>We buy straight from three family farms in Chikmagalur and Coorg — no brokers, no blends of unknown origin.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-num">02</div>
+      <h4>Small-Batch Roasted</h4>
+      <p>Every batch stays under 12kg, roasted on-site three mornings a week so nothing sits in a warehouse.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-num">03</div>
+      <h4>Fresh Within 48 Hours</h4>
+      <p>Beans hit the grinder within two days of roasting — most cafes serve coffee weeks older than that.</p>
+    </div>
+  </div>
+</section>
+
+<section class="signatures" id="signatures">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">THE SIGNATURES</span>
+      <h2>Four drinks that built our name.</h2>
+      <p>Everything else on the menu is worth ordering — these four are why people come back.</p>
+    </div>
+    <div class="sig-list">
+      <div class="sig-item">
+        <div class="sig-num">01</div>
+        <div class="sig-body">
+          <h3>The Amber Pour-Over</h3>
+          <p>Single-origin Chikmagalur beans, hand-poured through a V60 — bright, floral, and never bitter.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1618666185548-01f65f111766?auto=format&fit=crop&w=500&q=90" alt="Pour-over coffee brewing through a glass dripper">
+      </div>
+      <div class="sig-item">
+        <div class="sig-num">02</div>
+        <div class="sig-body">
+          <h3>Root Cold Brew</h3>
+          <p>Steeped 18 hours, cut with a splash of jaggery syrup for a rounder, less acidic finish.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1549652127-2e5e59e86a7a?auto=format&fit=crop&w=500&q=90" alt="Iced cold brew coffee in a plastic cup">
+      </div>
+      <div class="sig-item">
+        <div class="sig-num">03</div>
+        <div class="sig-body">
+          <h3>Cardamom Cortado</h3>
+          <p>Our espresso, equal parts steamed milk, a whisper of crushed green cardamom. A house original.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1519532059956-a63a37af5deb?auto=format&fit=crop&w=500&q=90" alt="Cortado coffee in a small glass on a wooden table">
+      </div>
+      <div class="sig-item">
+        <div class="sig-num">04</div>
+        <div class="sig-body">
+          <h3>Espresso Tonic</h3>
+          <p>A double shot poured over hand-cut ice and Sicilian lemon tonic — bright, bitter-sweet, built to sip slow.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1629022194335-b2eca031e320?auto=format&fit=crop&w=500&q=90" alt="Layered espresso tonic in a glass">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <img src="https://images.unsplash.com/photo-1524350876685-274059332603?auto=format&fit=crop&w=800&q=90" alt="Sack of freshly roasted coffee beans">
+    <div class="story-copy">
+      <span class="section-eyebrow">OUR STORY</span>
+      <h2>Started with one bag of green beans and a home roaster.</h2>
+      <p>Amber Root began in 2019 above a garage in Kalyani Nagar, roasting 2kg at a time on a machine built from spare parts. Three years and a lot of burnt batches later, we moved into the Koregaon Park space — but the rule hasn't changed: we still cup every new lot ourselves before it goes anywhere near a menu.</p>
+      <p>Today we work directly with three family-run farms in Chikmagalur and Coorg, paying above market rate for lots we'd actually want to drink. No importers, no unnamed "single-origin blends."</p>
+      <div class="story-sign">— Kabir Anand, Founder &amp; Head Roaster</div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">FULL MENU</span>
+      <h2>What's brewing today.</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-col">
+        <h3>COFFEE</h3>
+        <div class="menu-row">
+          <div><span class="m-name">Amber Pour-Over</span><span class="m-desc">Single-origin, rotates weekly</span></div>
+          <span class="m-price">₹240</span>
+        </div>
+        <div class="menu-row">
+          <div><span class="m-name">Espresso</span><span class="m-desc">Single or double shot</span></div>
+          <span class="m-price">₹150</span>
+        </div>
+        <div class="menu-row">
+          <div><span class="m-name">Cardamom Cortado</span><span class="m-desc">House original</span></div>
+          <span class="m-price">₹210</span>
+        </div>
+        <div class="menu-row">
+          <div><span class="m-name">Flat White</span><span class="m-desc">Double ristretto, microfoam</span></div>
+          <span class="m-price">₹220</span>
+        </div>
+        <div class="menu-row">
+          <div><span class="m-name">Root Cold Brew</span><span class="m-desc">18-hour steep, jaggery syrup</span></div>
+          <span class="m-price">₹230</span>
+        </div>
+      </div>
+      <div class="menu-col">
+        <h3>FROM THE KITCHEN</h3>
+        <div class="menu-row">
+          <div><span class="m-name">Dark Roast Affogato</span><span class="m-desc">Vanilla-bean gelato</span></div>
+          <span class="m-price">₹260</span>
+        </div>
+        <div class="menu-row">
+          <div><span class="m-name">Buttermilk Croissant</span><span class="m-desc">Baked fresh every morning</span></div>
+          <span class="m-price">₹140</span>
+        </div>
+        <div class="menu-row">
+          <div><span class="m-name">Banana Cardamom Loaf</span><span class="m-desc">Slice, warmed on request</span></div>
+          <span class="m-price">₹160</span>
+        </div>
+        <div class="menu-row">
+          <div><span class="m-name">Roasted Chana Toast</span><span class="m-desc">Sourdough, chili oil</span></div>
+          <span class="m-price">₹280</span>
+        </div>
+        <div class="menu-row">
+          <div><span class="m-name">Bean Flight (100g)</span><span class="m-desc">Take a roast home</span></div>
+          <span class="m-price">₹450</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">INSIDE THE ROASTERY</span>
+      <h2>A look around.</h2>
+    </div>
+    <div class="gallery-grid">
+      <a href="#"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=700&q=90" alt="Coffee shop interior"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1651783976258-3072215aac82?auto=format&fit=crop&w=700&q=90" alt="Barista at work"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1650338031221-ba71d1178d43?auto=format&fit=crop&w=700&q=90" alt="Coffee shop seating"></a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">GOOD TO KNOW</span>
+      <h2>Frequently asked.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span>Do you roast on-site?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Yes — our roaster sits right behind the counter. We roast in small batches three mornings a week, and you're welcome to watch.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is there parking nearby?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Street parking is available on Lane 7, and there's a paid lot two minutes' walk from the door.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Can I buy beans to take home?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Absolutely. Ask at the counter for our current bean flight — we bag 100g and 250g portions fresh, same day.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Do you host private events?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>We open the space for small cuppings and private tastings after hours — reach out through the contact form below.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">VISIT US</span>
+      <h2>Come say hello.</h2>
+    </div>
+    <div class="contact-grid">
+      <form onsubmit="return false;">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" placeholder="you@email.com">
+        </div>
+        <div class="field">
+          <label>Message</label>
+          <textarea rows="4" placeholder="Tell us what's on your mind"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="border:none;cursor:pointer;">Send Message</button>
+      </form>
+      <div class="map-block">
+        <div>
+          <div class="map-visual">
+            <div class="map-park"></div>
+            <div class="map-water"></div>
+            <div class="map-blocks">
+              <span style="top:14%;left:58%;width:16%;height:12%;"></span>
+              <span style="top:64%;left:14%;width:14%;height:16%;"></span>
+              <span style="top:68%;left:62%;width:18%;height:14%;"></span>
+              <span style="top:12%;left:34%;width:12%;height:10%;"></span>
+            </div>
+            <div class="map-roads">
+              <i style="top:0;left:48%;width:5px;height:100%;transform:skewX(-8deg);"></i>
+              <i style="top:44%;left:0;width:100%;height:5px;transform:skewY(2deg);"></i>
+              <i style="top:0;left:78%;width:4px;height:60%;transform:rotate(14deg);"></i>
+              <i style="top:70%;left:0;width:55%;height:4px;transform:rotate(-6deg);"></i>
+            </div>
+            <div class="map-route" style="top:44%;left:6%;width:44%;transform:rotate(1deg);"></div>
+            <div class="map-route" style="top:44%;left:48%;width:8%;transform:rotate(-38deg);"></div>
+            <div class="map-compass">N</div>
+            <div class="pin-ring"></div>
+            <div class="pin">📍</div>
+            <div class="map-label">Koregaon Park, Pune</div>
+          </div>
+          <div class="addr-line"><strong>Address</strong> 14 Lane 7, North Main Road, Koregaon Park, Pune 411001</div>
+          <div class="addr-line"><strong>Hours</strong> Mon–Sun, 8:00 AM – 9:00 PM</div>
+          <div class="addr-line"><strong>Phone</strong> +91 98765 43210</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="wrap">
+    <h2>Get first pour on new roasts.</h2>
+    <p>One email a month. New single-origin drops, seasonal menu changes, and the occasional cupping invite.</p>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" placeholder="you@email.com">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">Amber Root <span>Roasters</span></div>
+        <p style="color:var(--cream-dim);font-size:0.9rem;max-width:260px;">Small-batch coffee, roasted with intention, in the heart of Koregaon Park.</p>
+      </div>
+      <div>
+        <h4>EXPLORE</h4>
+        <ul>
+          <li><a href="#signatures">Signatures</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>INFO</h4>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Visit</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>FOLLOW</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Amber Root Roasters. All rights reserved.</span>
+      <span>Design mockup — for portfolio use.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click',()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>

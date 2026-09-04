@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marlowe Salon Studio — Hair &amp; Skin, Bandra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FAF5EF;
+    --ivory-deep:#F1E8DE;
+    --charcoal:#2A2420;
+    --charcoal-soft:#5A5049;
+    --mauve:#B5807A;
+    --mauve-bright:#C9958E;
+    --plum:#4A2E3D;
+    --gold:#C9A66B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--charcoal);
+    font-family:'Work Sans',sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:0.005em;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--mauve);color:var(--ivory);}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(250,245,239,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(42,36,32,0.08);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:82px;}
+  .brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;letter-spacing:0.01em;}
+  .brand span{color:var(--mauve);}
+  .navlinks{display:flex;gap:38px;font-size:0.88rem;letter-spacing:0.02em;color:var(--charcoal-soft);}
+  .navlinks a{transition:color .25s;}
+  .navlinks a:hover{color:var(--mauve);}
+  .nav-cta{
+    background:var(--plum);color:var(--ivory);
+    padding:11px 24px;border-radius:30px;
+    font-size:0.82rem;letter-spacing:0.02em;
+    transition:background .25s;
+  }
+  .nav-cta:hover{background:var(--mauve);}
+
+  /* HERO — image LEFT, text RIGHT (mirrors Mockup 1's opposite) */
+  header.hero{padding:150px 0 110px;position:relative;overflow:hidden;}
+  .hero-blob{
+    position:absolute;width:640px;height:640px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(197,150,142,0.28), transparent 70%);
+    top:-160px;left:-220px;z-index:0;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:0.95fr 1.05fr;
+    gap:64px;align-items:center;position:relative;z-index:1;
+  }
+  .hero-media{position:relative;}
+  .hero-media .img-main{
+    width:100%;height:560px;object-fit:cover;
+    border-radius:200px 200px 24px 24px;
+  }
+  .hero-media .img-float{
+    position:absolute;bottom:-38px;right:-46px;
+    width:180px;height:180px;object-fit:cover;
+    border-radius:50%;
+    border:6px solid var(--ivory);
+    box-shadow:0 18px 40px rgba(42,36,32,0.14);
+  }
+  .hero-eyebrow{
+    display:flex;align-items:center;gap:12px;
+    color:var(--mauve);font-size:0.8rem;letter-spacing:0.1em;
+    margin-bottom:24px;font-family:'Work Sans',sans-serif;
+  }
+  .hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+  .hero h1{
+    font-size:clamp(2.6rem,5vw,4.3rem);
+    line-height:1.08;margin-bottom:26px;
+  }
+  .hero h1 em{font-style:italic;color:var(--mauve);}
+  .hero p.lead{
+    color:var(--charcoal-soft);font-size:1.05rem;
+    max-width:440px;margin-bottom:36px;
+  }
+  .hero-actions{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--plum);color:var(--ivory);
+    padding:16px 32px;border-radius:30px;
+    font-size:0.88rem;letter-spacing:0.02em;
+    transition:background .25s, transform .25s;display:inline-block;
+  }
+  .btn-primary:hover{background:var(--mauve);transform:translateY(-1px);}
+  .btn-ghost{
+    color:var(--charcoal);font-size:0.9rem;
+    border-bottom:1px solid var(--charcoal);padding-bottom:2px;
+    transition:border-color .25s, color .25s;
+  }
+  .btn-ghost:hover{border-color:var(--mauve);color:var(--mauve);}
+
+  section{padding:120px 0;}
+  .section-head{margin-bottom:64px;max-width:620px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-eyebrow{
+    color:var(--mauve);font-size:0.8rem;letter-spacing:0.1em;margin-bottom:14px;display:block;
+  }
+  .section-head h2{font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.15;}
+  .section-head p{color:var(--charcoal-soft);margin-top:18px;font-size:1rem;max-width:520px;}
+  .section-head.center p{margin-left:auto;margin-right:auto;}
+
+  /* ABOUT / PHILOSOPHY */
+  .about{background:var(--ivory-deep);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+  .about-stats{display:flex;gap:50px;margin-top:36px;}
+  .stat h3{font-size:2.6rem;color:var(--plum);}
+  .stat p{font-size:0.84rem;color:var(--charcoal-soft);letter-spacing:0.02em;}
+
+  /* SERVICES — feature grid, NOT cards-with-borders; flush columns w/ rules */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(42,36,32,0.12);}
+  .service-col{
+    padding:38px 30px;border-right:1px solid rgba(42,36,32,0.12);
+    border-bottom:1px solid rgba(42,36,32,0.12);
+  }
+  .service-col:last-child{border-right:none;}
+  .service-col img{width:100%;height:210px;object-fit:cover;border-radius:4px;margin-bottom:24px;}
+  .service-col h3{font-size:1.5rem;margin-bottom:10px;}
+  .service-col p{color:var(--charcoal-soft);font-size:0.92rem;margin-bottom:18px;}
+  .service-price-list{list-style:none;font-size:0.88rem;}
+  .service-price-list li{
+    display:flex;justify-content:space-between;
+    padding:9px 0;border-top:1px dashed rgba(42,36,32,0.15);
+  }
+  .service-price-list li span:last-child{color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1rem;}
+  .service-artist{margin-top:16px;font-size:0.8rem;color:var(--mauve);letter-spacing:0.02em;font-style:italic;}
+
+  /* MASTHEAD / MEET THE STUDIO */
+  .masthead{background:var(--ivory-deep);}
+  .masthead-list{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid rgba(42,36,32,0.14);
+  }
+  .masthead-item{
+    padding:30px 24px;border-right:1px solid rgba(42,36,32,0.14);
+    border-bottom:1px solid rgba(42,36,32,0.14);
+  }
+  .masthead-item:last-child{border-right:none;}
+  .masthead-item .role{font-size:0.76rem;color:var(--mauve);letter-spacing:0.08em;margin-bottom:8px;}
+  .masthead-item h4{font-size:1.3rem;margin-bottom:6px;}
+  .masthead-item p{font-size:0.86rem;color:var(--charcoal-soft);}
+
+  /* REVIEWS STRIP */
+  .reviews-strip{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin-bottom:50px;color:var(--charcoal-soft);font-size:0.94rem;
+  }
+  .reviews-strip .stars{color:var(--gold);letter-spacing:2px;}
+
+  /* GALLERY — masonry-ish, circular accents */
+  .gallery{background:var(--ivory-deep);}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr 1fr;
+    grid-auto-rows:320px;
+    gap:18px;
+  }
+  .gallery-grid img{width:100%;height:100%;object-fit:cover;border-radius:10px;transition:transform .35s;}
+  .gallery-grid a:hover img{transform:scale(1.03);}
+
+  /* TESTIMONIALS */
+  .testimonials{text-align:center;}
+  .testi-track{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:44px;
+  }
+  .testi{padding:0 10px;}
+  .testi .stars{color:var(--gold);font-size:1rem;margin-bottom:18px;letter-spacing:3px;}
+  .testi p.quote{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-style:italic;line-height:1.5;margin-bottom:20px;color:var(--charcoal);}
+  .testi .who{font-size:0.86rem;color:var(--charcoal-soft);letter-spacing:0.02em;}
+  .testi .who strong{color:var(--charcoal);font-weight:500;}
+
+  /* FAQ */
+  .faq-list{max-width:760px;}
+  .faq-item{border-bottom:1px solid rgba(42,36,32,0.14);padding:26px 0;}
+  .faq-q{
+    display:flex;justify-content:space-between;align-items:center;
+    cursor:pointer;font-size:1.12rem;font-family:'Cormorant Garamond',serif;
+  }
+  .faq-q .plus{color:var(--mauve);font-size:1.4rem;transition:transform .25s;font-family:'Work Sans',sans-serif;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;color:var(--charcoal-soft);font-size:0.94rem;transition:max-height .35s ease, margin-top .35s ease;}
+  .faq-item.open .faq-a{max-height:200px;margin-top:14px;}
+
+  /* BOOKING / CONTACT */
+  .booking{background:var(--plum);color:var(--ivory);}
+  .booking .section-eyebrow{color:var(--gold);}
+  .booking .section-head p{color:rgba(250,245,239,0.7);}
+  .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:0.8rem;color:rgba(250,245,239,0.65);margin-bottom:8px;letter-spacing:0.02em;}
+  .field input, .field select, .field textarea{
+    width:100%;background:rgba(250,245,239,0.06);
+    border:1px solid rgba(250,245,239,0.25);
+    color:var(--ivory);padding:13px 14px;border-radius:6px;
+    font-family:'Work Sans',sans-serif;font-size:0.94rem;
+  }
+  .field select option{color:var(--charcoal);}
+  .field input:focus, .field select:focus, .field textarea:focus{outline:none;border-color:var(--gold);}
+  .booking-btn{
+    background:var(--gold);color:var(--plum);border:none;
+    padding:15px 30px;border-radius:6px;font-size:0.9rem;letter-spacing:0.02em;
+    cursor:pointer;transition:background .25s;font-weight:500;
+  }
+  .booking-btn:hover{background:var(--ivory);}
+  .info-block{display:flex;flex-direction:column;justify-content:center;gap:26px;}
+  .info-line{display:flex;gap:16px;font-size:0.94rem;color:rgba(250,245,239,0.85);}
+  .info-line strong{display:block;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:4px;}
+
+  /* FOOTER */
+  footer{padding:70px 0 40px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px;}
+  .footer-grid h4{font-size:0.82rem;color:var(--mauve);letter-spacing:0.08em;margin-bottom:18px;}
+  .footer-grid ul{list-style:none;}
+  .footer-grid li{margin-bottom:10px;}
+  .footer-grid li a{color:var(--charcoal-soft);font-size:0.9rem;transition:color .25s;}
+  .footer-grid li a:hover{color:var(--mauve);}
+  .footer-bottom{
+    border-top:1px solid rgba(42,36,32,0.12);
+    padding-top:26px;display:flex;justify-content:space-between;
+    font-size:0.8rem;color:var(--charcoal-soft);flex-wrap:wrap;gap:10px;
+  }
+
+  @media (max-width:900px){
+    .hero-grid, .about-grid, .booking-grid{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+    .services-grid{grid-template-columns:1fr;}
+    .service-col{border-right:none;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px;}
+    .masthead-list{grid-template-columns:1fr 1fr;}
+    .masthead-item:nth-child(2){border-right:none;}
+    .testi-track{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .hero-media .img-float{width:120px;height:120px;right:-10px;}
+  }
+
+  .cta-short{display:none;}
+
+  @media (max-width:480px){
+    .wrap{padding:0 20px;}
+    nav .wrap{height:64px;}
+    .brand{font-size:1.05rem;}
+    .nav-cta{padding:8px 14px;font-size:0.74rem;}
+    .cta-full{display:none;}
+    .cta-short{display:inline;}
+    .hero{padding:100px 0 70px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Marlowe <span>Salon</span></div>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#team">Our Team</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    <a href="#booking" class="nav-cta"><span class="cta-full">Request Appointment</span><span class="cta-short">Book Now</span></a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-blob"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-media">
+      <img class="img-main" src="https://images.unsplash.com/photo-1693578538512-fc66f318c833?auto=format&fit=crop&w=1000&q=90" alt="Bright salon lounge with warm seating">
+      <img class="img-float" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=400&q=90" alt="Hairstylist blow-drying a client's hair">
+    </div>
+    <div>
+      <div class="hero-eyebrow">HAIR &amp; SKIN STUDIO — BANDRA, MUMBAI</div>
+      <h1>Beauty, done<br>at your own <em>pace</em>.</h1>
+      <p class="lead">No rush, no assembly line. Marlowe is a five-chair studio where one stylist gives you their full attention, start to finish.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-primary">Request an Appointment</a>
+        <a href="#services" class="btn-ghost">See Services</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="section-eyebrow">OUR PHILOSOPHY</span>
+      <h2>Slow beauty, in a fast city.</h2>
+      <p style="color:var(--charcoal-soft);margin-top:20px;max-width:460px;">Marlowe opened in 2019 with one rule: no double-booking. Every appointment gets a full, unhurried hour with a stylist who actually remembers your last visit.</p>
+      <div class="about-stats">
+        <div class="stat"><h3>6+</h3><p>Years in Bandra</p></div>
+        <div class="stat"><h3>5</h3><p>Chairs, never more</p></div>
+        <div class="stat"><h3>1:1</h3><p>Stylist to client</p></div>
+      </div>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1781455793310-8427c96454c7?auto=format&fit=crop&w=800&q=90" alt="Salon chairs and styling stations" style="width:100%;height:420px;object-fit:cover;border-radius:16px;">
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">SIGNATURE SERVICES</span>
+      <h2>Three things we're known for.</h2>
+      <p>The full menu runs longer — these are what most first-time guests come in for.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0 32px;max-width:1180px;margin:0 auto;">
+    <div class="services-grid">
+      <div class="service-col">
+        <img src="https://images.unsplash.com/photo-1695527081848-1e46c06e6458?auto=format&fit=crop&w=600&q=90" alt="Hairstylist blow-drying a client's hair">
+        <h3>Cut &amp; Style</h3>
+        <p>Precision cutting with a stylist who consults first, cuts second — every single time.</p>
+        <ul class="service-price-list">
+          <li><span>Signature Cut · 60 min</span><span>₹1,400</span></li>
+          <li><span>Blow-dry &amp; Style · 45 min</span><span>₹900</span></li>
+        </ul>
+        <div class="service-artist">With Meera Kapoor, Lead Stylist</div>
+      </div>
+      <div class="service-col">
+        <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=600&q=90" alt="Manicure treatment close-up">
+        <h3>Nail Studio</h3>
+        <p>Gel, builder, and classic manicures — done at a table by the window, never rushed.</p>
+        <ul class="service-price-list">
+          <li><span>Classic Manicure · 40 min</span><span>₹650</span></li>
+          <li><span>Gel Overlay · 60 min</span><span>₹1,200</span></li>
+        </ul>
+        <div class="service-artist">With Sana Iqbal, Nail Artist</div>
+      </div>
+      <div class="service-col">
+        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=600&q=90" alt="Facial skincare treatment">
+        <h3>Skin &amp; Facial</h3>
+        <p>Consultation-led facials tailored to your skin that week, not a fixed 45-minute script.</p>
+        <ul class="service-price-list">
+          <li><span>Signature Facial · 75 min</span><span>₹1,800</span></li>
+          <li><span>Express Glow · 30 min</span><span>₹1,100</span></li>
+        </ul>
+        <div class="service-artist">With Devika Rao, Skin Therapist</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="masthead" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">MEET THE STUDIO</span>
+      <h2>Five chairs, five specialists.</h2>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0 32px;max-width:1180px;margin:0 auto;">
+    <div class="masthead-list">
+      <div class="masthead-item">
+        <div class="role">LEAD STYLIST</div>
+        <h4>Meera Kapoor</h4>
+        <p>Cut &amp; colour, 12 years — trained in London before opening the chair at Marlowe.</p>
+      </div>
+      <div class="masthead-item">
+        <div class="role">COLOURIST</div>
+        <h4>Ishaan Verma</h4>
+        <p>Balayage and colour correction specialist, formerly at a Bandra colour bar.</p>
+      </div>
+      <div class="masthead-item">
+        <div class="role">NAIL ARTIST</div>
+        <h4>Sana Iqbal</h4>
+        <p>Gel, builder, and hand-painted nail art — booked out two weeks in advance.</p>
+      </div>
+      <div class="masthead-item">
+        <div class="role">SKIN THERAPIST</div>
+        <h4>Devika Rao</h4>
+        <p>Certified aesthetician focused on consultation-led, low-irritant facials.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">INSIDE THE STUDIO</span>
+      <h2>A look around.</h2>
+    </div>
+    <div class="gallery-grid">
+      <a href="#"><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=700&q=90" alt="Salon chairs and mirrors"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1626379501846-0df4067b8bb9?auto=format&fit=crop&w=500&q=90" alt="Styling chair beside a mirror"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1600948835780-9c4a8b55cf50?auto=format&fit=crop&w=500&q=90" alt="Green plant decor detail"></a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="reviews">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="section-eyebrow">CLIENT NOTES</span>
+      <h2>What people leave saying.</h2>
+    </div>
+    <div class="reviews-strip">
+      <span class="stars">★★★★★</span>
+      <span>4.9 from 210+ reviews on Google</span>
+    </div>
+    <div class="testi-track">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"First salon where I've never felt like I was being rushed out for the next booking."</p>
+        <div class="who"><strong>Ritika M.</strong> — client since 2022</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"The colour consultation alone was more thorough than most full appointments elsewhere."</p>
+        <div class="who"><strong>Naina S.</strong> — client since 2021</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Booked for a haircut, stayed for the facial. Now I plan my whole month around this place."</p>
+        <div class="who"><strong>Farah K.</strong> — client since 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">GOOD TO KNOW</span>
+      <h2>Frequently asked.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span>How far in advance should I book?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>We recommend 4–5 days for weekday slots and at least 10 days for weekend appointments — we keep chairs limited on purpose.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Do you offer consultations before a colour service?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Yes, every colour appointment opens with a 15-minute consultation, included at no extra charge.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is the studio child-friendly?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>We're a quiet, adults-focused space, but we're happy to recommend nearby sitters for longer appointments.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>What's your cancellation policy?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>We ask for 24 hours' notice so we can offer the slot to someone on our waitlist.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">REQUEST AN APPOINTMENT</span>
+      <h2>Let's find you a time.</h2>
+      <p>Send a request and our front desk will confirm your slot within one business day.</p>
+    </div>
+    <div class="booking-grid">
+      <form onsubmit="return false;">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="field">
+          <label>Phone or Email</label>
+          <input type="text" placeholder="How should we reach you?">
+        </div>
+        <div class="field">
+          <label>Service Interested In</label>
+          <select>
+            <option>Cut &amp; Style</option>
+            <option>Colour</option>
+            <option>Nail Studio</option>
+            <option>Skin &amp; Facial</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preferred Day / Time</label>
+          <input type="text" placeholder="e.g. Saturday afternoon">
+        </div>
+        <button type="submit" class="booking-btn">Send Request</button>
+      </form>
+      <div class="info-block">
+        <div class="info-line">
+          <div><strong>Studio Address</strong>4th Road, Pali Hill, Bandra West, Mumbai 400050</div>
+        </div>
+        <div class="info-line">
+          <div><strong>Studio Hours</strong>Tue–Sun, 10:00 AM – 8:00 PM · Closed Mondays</div>
+        </div>
+        <div class="info-line">
+          <div><strong>Phone</strong>+91 98200 11223</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">Marlowe <span>Salon</span></div>
+        <p style="color:var(--charcoal-soft);font-size:0.9rem;max-width:260px;">An unhurried hair, nail, and skin studio in Pali Hill, Bandra.</p>
+      </div>
+      <div>
+        <h4>EXPLORE</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>INFO</h4>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#booking">Book</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>FOLLOW</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Marlowe Salon Studio. All rights reserved.</span>
+      <span>Design mockup — for portfolio use.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click',()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>

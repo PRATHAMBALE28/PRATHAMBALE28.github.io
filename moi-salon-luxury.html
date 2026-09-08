@@ -47,8 +47,9 @@
   }
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;height:92vh;min-height:600px;max-height:820px;overflow:hidden;}
-  .hero img{width:100%;height:100%;object-fit:cover;object-position:55% 30%;}
+  .hero{position:relative;height:92vh;min-height:600px;max-height:820px;overflow:hidden;background:var(--ink);}
+  .hero-media{position:relative;width:100%;height:100%;max-width:1500px;margin:0 auto;}
+  .hero-media img{width:100%;height:100%;object-fit:cover;object-position:15% 62%;}
   .hero::after{
     content:'';position:absolute;inset:0;
     background:linear-gradient(0deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.05) 42%, rgba(10,9,8,0.02) 100%);
@@ -139,10 +140,13 @@
     display:flex;justify-content:space-between;align-items:center;
     padding:26px 0;border-top:1px solid var(--line);
     font-size:clamp(20px,2.6vw,28px);
+    cursor:pointer;transition:color 0.2s, padding-left 0.2s;
   }
   .plain-list .plain-row:last-child{border-bottom:1px solid var(--line);}
   .plain-row .tag{font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--smoke);font-weight:600;}
-  .plain-row:hover{color:var(--gold);cursor:default;}
+  .plain-row .arrow{font-size:0.7em;opacity:0;transform:translateX(-8px);transition:opacity 0.2s, transform 0.2s;color:var(--gold);}
+  .plain-row:hover{color:var(--gold);padding-left:10px;}
+  .plain-row:hover .arrow{opacity:1;transform:translateX(0);}
 
   /* ---------- REVIEWS CAROUSEL ---------- */
   .marquee-section{padding-bottom:56px;}
@@ -255,7 +259,9 @@
 </header>
 
 <section class="hero">
-  <img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural">
+  <div class="hero-media">
+    <img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon backlit oval mirror styling stations">
+  </div>
   <div class="hero-ghost">MOI</div>
   <div class="hero-ghost second">MOI</div>
   <div class="hero-content">
@@ -277,11 +283,11 @@
 </div>
 
 <div class="two-up">
-  <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener"><figure><img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon backlit oval mirror styling stations" style="object-position:50% 25%;"></figure></a>
+  <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener"><figure><img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural"></figure></a>
   <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20pedicure%20or%20gel%20nails" target="_blank" rel="noopener"><figure><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80" alt="Pedicure and gel nail service"></figure></a>
 </div>
 <div class="two-up-labels">
-  <div class="two-up-label">The Styling Floor</div>
+  <div class="two-up-label">The Entrance</div>
   <div class="two-up-label">Hands &amp; Feet</div>
 </div>
 
@@ -302,10 +308,10 @@
       <h2>What We Do</h2>
     </div>
     <div class="plain-list reveal">
-      <div class="plain-row"><span>Hair &mdash; Cut, Style, Spa &amp; Botox</span></div>
-      <div class="plain-row"><span>Waxing &amp; Threading</span></div>
-      <div class="plain-row"><span>Hands &amp; Feet &mdash; Pedicure &amp; Gel Nails</span></div>
-      <div class="plain-row"><span>Aqua Treatment</span></div>
+      <a class="plain-row" href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20hair%20appointment%20(cut%2Fstyle%2Fspa%2Fbotox)" target="_blank" rel="noopener"><span>Hair &mdash; Cut, Style, Spa &amp; Botox</span><span class="arrow">&#8594;</span></a>
+      <a class="plain-row" href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20waxing%20%26%20threading" target="_blank" rel="noopener"><span>Waxing &amp; Threading</span><span class="arrow">&#8594;</span></a>
+      <a class="plain-row" href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20pedicure%20or%20gel%20nails" target="_blank" rel="noopener"><span>Hands &amp; Feet &mdash; Pedicure &amp; Gel Nails</span><span class="arrow">&#8594;</span></a>
+      <a class="plain-row" href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20aqua%20treatment" target="_blank" rel="noopener"><span>Aqua Treatment</span><span class="arrow">&#8594;</span></a>
     </div>
   </div>
 </section>

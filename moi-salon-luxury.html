@@ -41,6 +41,17 @@
     padding:24px 40px;max-width:1240px;margin:0 auto;
   }
   .nav-side{font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;}
+  .nav-menu-btn{background:none;border:none;padding:0;font-family:inherit;color:inherit;cursor:pointer;}
+  .nav-panel{
+    max-height:0;overflow:hidden;background:var(--cream);border-bottom:0 solid var(--line);
+    transition:max-height 0.35s ease;
+  }
+  .nav-panel.is-open{max-height:280px;border-bottom-width:1px;}
+  .nav-panel a{
+    display:block;padding:16px 40px;font-size:15px;border-top:1px solid var(--line);
+    max-width:1240px;margin:0 auto;
+  }
+  .nav-panel-cta{color:var(--gold) !important;font-weight:700;}
   .wordmark{
     font-family:'Archivo Expanded',sans-serif;font-weight:700;
     font-size:22px;letter-spacing:0.28em;text-transform:uppercase;
@@ -269,9 +280,16 @@
 
 <header>
   <div class="nav-inner">
-    <span class="nav-side">Menu</span>
+    <button type="button" class="nav-side nav-menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navPanel">Menu</button>
     <a href="#" class="wordmark">moi</a>
     <span class="nav-side">Gahunje</span>
+  </div>
+  <div class="nav-panel" id="navPanel">
+    <a href="#services">Services</a>
+    <a href="#edit">The Edit</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+    <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener" class="nav-panel-cta">Book Now</a>
   </div>
 </header>
 
@@ -279,7 +297,6 @@
   <div class="hero-media" id="heroSlides">
     <img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon backlit oval mirror styling stations" class="hero-slide is-active" style="object-position:15% 62%;">
     <img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural" class="hero-slide" style="object-position:55% 30%;">
-    <img src="assets/moi/signage-mural.jpg" alt="Moi Salon backlit storefront signage and mural" class="hero-slide" style="object-position:50% 25%;">
   </div>
   <div class="hero-content">
     <h1>Moi Salon<br>Gahunje</h1>
@@ -299,7 +316,7 @@
   </div>
 </div>
 
-<section class="trending">
+<section class="trending" id="edit">
   <div class="wrap">
     <div class="list-head reveal">
       <h2>The Edit</h2>
@@ -509,6 +526,10 @@
         <img src="assets/styles/copper-auburn.jpg" alt="Copper and auburn hair colour">
         <figcaption>Copper &amp; Auburn &mdash; warm, rich tone that reads different in every light.</figcaption>
       </figure>
+      <figure>
+        <img src="assets/styles/highlighted-waves.jpg" alt="Dimensional highlights styled into waves">
+        <figcaption>Highlighted Waves &mdash; dimensional highlights that catch the light through a soft curl.</figcaption>
+      </figure>
     </div>
     <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20ask%20about%20a%20colour%20service" target="_blank" rel="noopener" class="btn-solid">Book a Colour Consult</a>
   </div>
@@ -528,12 +549,37 @@
         <img src="assets/styles/slicked-back-fade.jpg" alt="Slicked back pompadour with skin fade">
         <figcaption>Slicked-Back Fade &mdash; a clean skin fade under a longer, combed-back top.</figcaption>
       </figure>
+      <figure>
+        <img src="assets/styles/high-fade-texture.jpg" alt="High fade with textured top">
+        <figcaption>High Fade &amp; Texture &mdash; a sharp high fade under a longer, textured top.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/styles/clean-fade.jpg" alt="Clean skin fade detail work">
+        <figcaption>Clean Skin Fade &mdash; precise clipper work down to a bare edge.</figcaption>
+      </figure>
     </div>
     <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20men%27s%20haircut" target="_blank" rel="noopener" class="btn-solid">Book a Haircut</a>
   </div>
 </div>
 
 <script>
+(function(){
+  var btn = document.getElementById('menuBtn');
+  var panel = document.getElementById('navPanel');
+  if (btn && panel) {
+    btn.addEventListener('click', function(){
+      var isOpen = panel.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    panel.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        panel.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+})();
+
 (function(){
   var els = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window)) {

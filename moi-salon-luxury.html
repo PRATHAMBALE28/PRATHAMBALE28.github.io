@@ -59,13 +59,12 @@
     background:linear-gradient(0deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.05) 42%, rgba(10,9,8,0.02) 100%);
   }
   .hero-ghost{
-    position:absolute;top:6%;left:50%;transform:translateX(-50%);
+    position:absolute;top:3%;left:50%;transform:translateX(-50%);
     font-family:'Archivo Expanded',sans-serif;font-weight:700;
-    font-size:min(15vw,190px);letter-spacing:0.02em;text-transform:uppercase;
-    color:transparent;-webkit-text-stroke:1.5px rgba(243,239,231,0.5);
+    font-size:min(11vw,140px);letter-spacing:0.02em;text-transform:uppercase;
+    color:transparent;-webkit-text-stroke:1px rgba(243,239,231,0.32);
     white-space:nowrap;z-index:1;pointer-events:none;line-height:1;
   }
-  .hero-ghost.second{top:13.5%;-webkit-text-stroke:1px rgba(243,239,231,0.24);}
   .hero-content{
     position:absolute;left:0;right:0;bottom:56px;z-index:2;
     display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;
@@ -110,16 +109,16 @@
   .editorial h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:22px;}
   .editorial p{font-size:16px;line-height:1.8;color:var(--ink-soft);margin-bottom:36px;}
 
-  /* ---------- FULL BANNER ---------- */
-  .banner-link{display:block;position:relative;}
-  .banner{height:64vh;min-height:420px;max-height:640px;overflow:hidden;position:relative;}
-  .banner img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s ease;}
-  .banner-link:hover .banner img{transform:scale(1.03);}
-  .banner-label{
-    position:absolute;left:40px;bottom:24px;color:var(--cream);
-    font-size:13px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
-    text-shadow:0 2px 12px rgba(0,0,0,0.5);
-  }
+
+  /* ---------- TRENDING ---------- */
+  .trending{padding:100px 0 60px;}
+  .trending-grid{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  .trending-card figure{aspect-ratio:4/3;overflow:hidden;margin-bottom:22px;}
+  .trending-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
+  .trending-card:hover img{transform:scale(1.04);}
+  .trending-card h3{font-size:22px;font-weight:400;margin-bottom:8px;color:var(--ink);}
+  .trending-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;}
+  @media (max-width:700px){.trending-grid{grid-template-columns:1fr;}}
 
   /* ---------- LIST SECTION ---------- */
   .list-section{padding:96px 0;}
@@ -218,7 +217,6 @@
     .wordmark{font-size:17px;letter-spacing:0.18em;}
     .wrap{padding:0 22px;}
     .hero-content{padding:0 22px;flex-direction:column;align-items:flex-start;}
-    .banner-label{left:22px;}
     .editorial{padding:70px 0;}
     .list-section{padding:60px 0;}
     .quote-band{padding:70px 0;}
@@ -247,7 +245,6 @@
     <img src="assets/moi/signage-mural.jpg" alt="Moi Salon backlit storefront signage and mural" class="hero-slide" style="object-position:50% 25%;">
   </div>
   <div class="hero-ghost">MOI</div>
-  <div class="hero-ghost second">MOI</div>
   <div class="hero-content">
     <h1>Moi Salon<br>Gahunje</h1>
     <div class="hero-actions">
@@ -266,10 +263,26 @@
   </div>
 </div>
 
-<a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener" class="banner-link">
-  <div class="banner"><img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural"></div>
-  <div class="banner-label">The Entrance</div>
-</a>
+<section class="trending">
+  <div class="wrap">
+    <div class="list-head reveal">
+      <h2>Trending Now</h2>
+      <span>Ask for these by name</span>
+    </div>
+    <div class="trending-grid reveal">
+      <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20ask%20about%20a%20colour%20%2F%20balayage%20service" target="_blank" rel="noopener" class="trending-card">
+        <figure><img src="https://images.unsplash.com/photo-1712213396688-c6f2d536671f?auto=format&fit=crop&w=700&q=80" alt="Hair colour and foil highlights in progress"></figure>
+        <h3>Dimensional Colour</h3>
+        <p>Foils and balayage that grow out soft, not stripy.</p>
+      </a>
+      <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20men%27s%20haircut" target="_blank" rel="noopener" class="trending-card">
+        <figure><img src="https://images.unsplash.com/photo-1647140655214-e4a2d914971f?auto=format&fit=crop&w=700&q=80" alt="Men's precision haircut in progress"></figure>
+        <h3>Precision Fades</h3>
+        <p>Sharp, clean lines &mdash; scissor and clipper work in the same chair.</p>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="editorial">
   <div class="wrap">

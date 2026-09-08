@@ -128,6 +128,21 @@
   .plain-row .tag{font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--smoke);font-weight:600;}
   .plain-row:hover{color:var(--gold);cursor:default;}
 
+  /* ---------- REVIEWS MARQUEE ---------- */
+  .marquee-section{padding-bottom:56px;}
+  .marquee{overflow:hidden;margin:48px 0 32px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+  .marquee-track{display:flex;gap:32px;width:max-content;animation:marquee-scroll 34s linear infinite;}
+  .marquee:hover .marquee-track{animation-play-state:paused;}
+  .rev-tile{
+    width:min(420px,80vw);flex-shrink:0;
+    background:var(--cream);padding:32px 30px;border:1px solid var(--line);
+  }
+  .rev-tile .stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:16px;}
+  .rev-tile p{font-size:15px;line-height:1.75;margin-bottom:16px;min-height:105px;}
+  .rev-tile cite{font-style:normal;font-size:12.5px;letter-spacing:0.05em;text-transform:uppercase;color:var(--smoke);}
+  @keyframes marquee-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion: reduce){.marquee-track{animation:none;}}
+
   /* ---------- QUOTE BAND ---------- */
   .quote-band{background:var(--stone);padding:110px 0;text-align:center;}
   .quote-band .stars{color:var(--gold);font-size:16px;letter-spacing:3px;margin-bottom:26px;}
@@ -148,6 +163,15 @@
   .spotlight-copy .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
   .spotlight-copy h2{font-size:clamp(26px,3vw,36px);margin-bottom:16px;color:var(--cream);}
   .spotlight-copy p{font-size:15px;line-height:1.75;color:#C9C5BD;margin-bottom:28px;max-width:380px;}
+
+  /* ---------- JOURNAL ---------- */
+  .journal{padding:110px 0;}
+  .journal-grid{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:44px;}
+  .journal-card figure{aspect-ratio:4/3;overflow:hidden;margin-bottom:24px;}
+  .journal-card img{width:100%;height:100%;object-fit:cover;}
+  .journal-card .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px;}
+  .journal-card h3{font-size:22px;font-weight:400;margin-bottom:12px;}
+  .journal-card p{font-size:15px;line-height:1.75;color:var(--ink-soft);}
 
   /* ---------- STRIP ---------- */
   .strip{display:grid;grid-template-columns:repeat(3,1fr);}
@@ -186,6 +210,8 @@
     .quote-band{padding:70px 0;}
     .spotlight{grid-template-columns:1fr;}
     .spotlight-copy{padding:44px 26px;aspect-ratio:auto;}
+    .journal{padding:60px 0;}
+    .journal-grid{grid-template-columns:1fr;gap:36px;}
     .strip{grid-template-columns:1fr 1fr;}
     .strip figure:first-child{grid-column:1/3;aspect-ratio:16/10;}
     .foot-row{gap:28px;}
@@ -216,11 +242,11 @@
 </section>
 
 <div class="two-up">
-  <a href="#gallery"><figure><img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural"></figure></a>
+  <a href="#reviews"><figure><img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural"></figure></a>
   <a href="#services"><figure><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80" alt="Manicure treatment"></figure></a>
 </div>
 <div class="two-up-labels">
-  <div class="two-up-label">The Studio</div>
+  <div class="two-up-label">The Entrance</div>
   <div class="two-up-label">Hands &amp; Feet</div>
 </div>
 
@@ -228,70 +254,107 @@
   <div class="wrap">
     <div class="inner reveal">
       <span class="eyebrow">All About You</span>
-      <h2>Un-intimidating luxury, two minutes from Lodha Belmondo.</h2>
-      <p>Moi is a modern unisex studio in Gahunje built around one idea &mdash; the salon-fresh feeling shouldn&rsquo;t be saved for occasions. Backlit mirror stations, a hand-picked team of stylists and beauticians, and a room that photographs as good as the finished look does.</p>
+      <h2>A studio floor built on backlit mirrors, two minutes from Lodha Belmondo.</h2>
+      <p>Moi is a modern unisex studio in Gahunje &mdash; a hand-picked team, a room that photographs as well as the finished look does, and a name Gahunje already knows through 150+ Google reviews.</p>
       <a href="tel:+918526055555" class="btn-ghost dark">Call 085260 55555</a>
     </div>
   </div>
 </section>
 
-<div class="banner reveal">
-  <img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural, full width">
-</div>
-
 <section id="services" class="list-section">
   <div class="wrap">
     <div class="list-head reveal">
       <h2>What We Do</h2>
-      <span>Six categories, one address</span>
+      <span>Gahunje, Pune</span>
     </div>
     <div class="plain-list reveal">
-      <div class="plain-row"><span>Hair &mdash; Cut, Style, Spa &amp; Botox</span><span class="tag">Signature</span></div>
-      <div class="plain-row"><span>Waxing &amp; Threading</span><span class="tag">Quick Visit</span></div>
-      <div class="plain-row"><span>Hands &amp; Feet</span><span class="tag">Express to Ritual</span></div>
-      <div class="plain-row"><span>Skin &amp; Aqua Treatments</span><span class="tag">Refresh</span></div>
-      <div class="plain-row"><span>Bridal &amp; Party</span><span class="tag">Full Look</span></div>
-      <div class="plain-row"><span>Moi Academy</span><span class="tag">Learn</span></div>
+      <div class="plain-row"><span>Hair &mdash; Cut, Style, Spa &amp; Botox</span></div>
+      <div class="plain-row"><span>Waxing &amp; Threading</span></div>
+      <div class="plain-row"><span>Hands &amp; Feet &mdash; Pedicure &amp; Gel Nails</span></div>
+      <div class="plain-row"><span>Aqua Treatment</span></div>
     </div>
   </div>
 </section>
 
-<section class="quote-band reveal">
+<section id="reviews" class="list-section marquee-section" style="background:var(--stone);">
   <div class="wrap">
-    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-    <blockquote>&ldquo;Azhan did an excellent job with my haircut and understood exactly what I was looking for. Professional, and clearly knows his craft.&rdquo;</blockquote>
-    <cite>Shikha P. &mdash; Google Review</cite>
-    <a href="https://www.google.com/maps/search/?api=1&query=Moi+Salon+Gahunje&query_place_id=ChIJMSRpjcGxwjsRvZEol3OvB7E" target="_blank" rel="noopener" class="btn-ghost dark">Read more reviews</a>
+    <div class="list-head reveal">
+      <h2>What Gahunje Says</h2>
+      <span>4.2 Rating &middot; 150+ Google Reviews</span>
+    </div>
+  </div>
+  <div class="marquee reveal">
+    <div class="marquee-track">
+      <div class="rev-tile">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;Azhan did an excellent job with my haircut and understood exactly what I was looking for. Professional, and clearly knows his craft.&rdquo;</p>
+        <cite>Shikha P.</cite>
+      </div>
+      <div class="rev-tile">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;The friendly and welcoming atmosphere made me feel comfortable the whole visit. Deepa and Amol take such good care of people.&rdquo;</p>
+        <cite>Snehal S.</cite>
+      </div>
+      <div class="rev-tile">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;Anish did my hairspa &mdash; it was a very soothing experience. Clean, hygienic salon.&rdquo;</p>
+        <cite>Google Review</cite>
+      </div>
+      <div class="rev-tile" aria-hidden="true">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;Azhan did an excellent job with my haircut and understood exactly what I was looking for. Professional, and clearly knows his craft.&rdquo;</p>
+        <cite>Shikha P.</cite>
+      </div>
+      <div class="rev-tile" aria-hidden="true">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;The friendly and welcoming atmosphere made me feel comfortable the whole visit. Deepa and Amol take such good care of people.&rdquo;</p>
+        <cite>Snehal S.</cite>
+      </div>
+      <div class="rev-tile" aria-hidden="true">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;Anish did my hairspa &mdash; it was a very soothing experience. Clean, hygienic salon.&rdquo;</p>
+        <cite>Google Review</cite>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <a href="https://www.google.com/maps/search/?api=1&query=Moi+Salon+Gahunje&query_place_id=ChIJMSRpjcGxwjsRvZEol3OvB7E" target="_blank" rel="noopener" class="btn-ghost dark reveal" style="margin-top:8px;">Read all reviews on Google</a>
+  </div>
   </div>
 </section>
 
 <div class="spotlight">
-  <figure><img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon styling floor in black and white"></figure>
+  <figure><img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon styling floor"></figure>
   <div class="spotlight-copy reveal">
-    <span class="eyebrow">Meet The Team</span>
-    <h2>Four hands you can trust with your look.</h2>
-    <p>Azhan, hair stylist. Anish, hair spa specialist. Deepa and Amol, beauticians. Hand-picked, and the reason 150+ reviews keep saying the same thing.</p>
-    <a href="#visit" class="btn-ghost">Find out more</a>
+    <span class="eyebrow">The Names You'll Hear</span>
+    <h2>Azhan. Anish. Deepa. Amol.</h2>
+    <p>Four names that keep coming up in the same 150+ reviews &mdash; a hair stylist, a hair spa specialist, and two beauticians, mentioned by name for the same reason each time.</p>
+    <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener" class="btn-ghost">Ask for them by name</a>
   </div>
 </div>
 
-<section class="quote-band" style="padding-top:80px;padding-bottom:80px;background:var(--cream);">
-  <div class="wrap reveal">
-    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-    <blockquote>&ldquo;The friendly and welcoming atmosphere made me feel comfortable the whole visit. Deepa and Amol take such good care of people.&rdquo;</blockquote>
-    <cite>Snehal S. &mdash; Google Review</cite>
+<section class="journal">
+  <div class="wrap">
+    <div class="list-head reveal">
+      <h2>From The Chair</h2>
+      <span>Notes &amp; Guidance</span>
+    </div>
+    <div class="journal-grid reveal">
+      <div class="journal-card">
+        <figure><img src="https://images.unsplash.com/photo-1647140655214-e4a2d914971f?auto=format&fit=crop&w=700&q=80" alt="Men's haircut in progress"></figure>
+        <span class="eyebrow">For Him</span>
+        <h3>Unisex, By Design</h3>
+        <p>Moi runs one floor for everyone &mdash; the same stylists, the same mirrors, the same standard, whether it's your first fade or your fifth colour appointment.</p>
+      </div>
+      <div class="journal-card">
+        <figure><img src="https://images.unsplash.com/photo-1712213396688-c6f2d536671f?auto=format&fit=crop&w=700&q=80" alt="Hair colour and texture work in progress"></figure>
+        <span class="eyebrow">Hair Spa &amp; Botox</span>
+        <h3>The Texture Conversation</h3>
+        <p>Hair botox and spa treatments at Moi are booked for one reason more than any other: not a new colour, just hair that behaves like it did years ago.</p>
+      </div>
+    </div>
   </div>
 </section>
-
-<section id="gallery" class="strip-head">
-  <span>150+ Reviews &middot; 4.2 Rating</span>
-  <h2>Inside Moi</h2>
-</section>
-<div class="strip">
-  <a href="#"><figure><img src="assets/moi/oval-mirror-stations.jpg" alt="Backlit oval mirror styling stations"></figure></a>
-  <a href="#"><figure><img src="assets/moi/entrance-staircase.jpg" alt="Entrance staircase and mural"></figure></a>
-  <a href="#"><figure><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=600&q=80" alt="Manicure treatment"></figure></a>
-</div>
 
 <footer id="visit">
   <div class="wrap">
@@ -307,7 +370,7 @@
       </div>
       <div class="foot-col">
         <h4>Hours</h4>
-        <p>Open Daily<br>10:00 AM &ndash; 8:00 PM</p>
+        <p>Message or call ahead<br>for today's hours</p>
       </div>
       <div class="foot-col">
         <h4>Book</h4>

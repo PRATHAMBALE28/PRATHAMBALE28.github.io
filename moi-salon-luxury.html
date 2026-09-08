@@ -136,17 +136,26 @@
   .list-head h2{font-size:clamp(26px,3vw,36px);}
   .list-head span{font-size:13px;color:var(--smoke);letter-spacing:0.04em;}
   .plain-list{margin-top:40px;}
+  .svc-item{border-top:1px solid var(--line);}
+  .plain-list .svc-item:last-child{border-bottom:1px solid var(--line);}
   .plain-row{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:26px 0;border-top:1px solid var(--line);
+    width:100%;display:flex;justify-content:space-between;align-items:center;
+    padding:26px 0;border:none;background:none;text-align:left;
+    font-family:inherit;color:inherit;
     font-size:clamp(20px,2.6vw,28px);
-    cursor:pointer;transition:color 0.2s, padding-left 0.2s;
+    cursor:pointer;transition:color 0.2s;
   }
-  .plain-list .plain-row:last-child{border-bottom:1px solid var(--line);}
-  .plain-row .tag{font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--smoke);font-weight:600;}
-  .plain-row .arrow{font-size:0.7em;opacity:0;transform:translateX(-8px);transition:opacity 0.2s, transform 0.2s;color:var(--gold);}
-  .plain-row:hover{color:var(--gold);padding-left:10px;}
-  .plain-row:hover .arrow{opacity:1;transform:translateX(0);}
+  .plain-row .toggle{font-size:0.65em;color:var(--gold);transition:transform 0.25s;flex-shrink:0;margin-left:20px;}
+  .plain-row:hover{color:var(--gold);}
+  .svc-item[data-open="true"] .toggle{transform:rotate(135deg);}
+  .svc-panel{
+    max-height:0;overflow:hidden;
+    transition:max-height 0.35s ease, padding 0.35s ease;
+  }
+  .svc-item[data-open="true"] .svc-panel{max-height:220px;padding-bottom:30px;}
+  .svc-panel ul{list-style:none;margin-bottom:20px;display:flex;flex-direction:column;gap:8px;}
+  .svc-panel li{font-size:15px;color:var(--ink-soft);padding-left:16px;position:relative;}
+  .svc-panel li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--gold);}
 
   /* ---------- REVIEWS CAROUSEL ---------- */
   .marquee-section{padding-bottom:56px;}
@@ -307,11 +316,56 @@
     <div class="list-head reveal">
       <h2>What We Do</h2>
     </div>
-    <div class="plain-list reveal">
-      <a class="plain-row" href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20hair%20appointment%20(cut%2Fstyle%2Fspa%2Fbotox)" target="_blank" rel="noopener"><span>Hair &mdash; Cut, Style, Spa &amp; Botox</span><span class="arrow">&#8594;</span></a>
-      <a class="plain-row" href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20waxing%20%26%20threading" target="_blank" rel="noopener"><span>Waxing &amp; Threading</span><span class="arrow">&#8594;</span></a>
-      <a class="plain-row" href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20pedicure%20or%20gel%20nails" target="_blank" rel="noopener"><span>Hands &amp; Feet &mdash; Pedicure &amp; Gel Nails</span><span class="arrow">&#8594;</span></a>
-      <a class="plain-row" href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20aqua%20treatment" target="_blank" rel="noopener"><span>Aqua Treatment</span><span class="arrow">&#8594;</span></a>
+    <div class="plain-list reveal" id="svcAccordion">
+      <div class="svc-item">
+        <button class="plain-row" type="button" aria-expanded="false">
+          <span>Hair &mdash; Cut, Style, Spa &amp; Botox</span><span class="toggle">&#43;</span>
+        </button>
+        <div class="svc-panel">
+          <ul>
+            <li>Haircut &amp; Styling</li>
+            <li>Hair Spa</li>
+            <li>Hair Botox</li>
+          </ul>
+          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20hair%20appointment%20(cut%2Fstyle%2Fspa%2Fbotox)" target="_blank" rel="noopener" class="btn-ghost dark">Book via WhatsApp</a>
+        </div>
+      </div>
+      <div class="svc-item">
+        <button class="plain-row" type="button" aria-expanded="false">
+          <span>Waxing &amp; Threading</span><span class="toggle">&#43;</span>
+        </button>
+        <div class="svc-panel">
+          <ul>
+            <li>Waxing</li>
+            <li>Threading</li>
+          </ul>
+          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20waxing%20%26%20threading" target="_blank" rel="noopener" class="btn-ghost dark">Book via WhatsApp</a>
+        </div>
+      </div>
+      <div class="svc-item">
+        <button class="plain-row" type="button" aria-expanded="false">
+          <span>Hands &amp; Feet &mdash; Pedicure &amp; Gel Nails</span><span class="toggle">&#43;</span>
+        </button>
+        <div class="svc-panel">
+          <ul>
+            <li>Express Pedicure</li>
+            <li>Rejuvenating &amp; Hydrating Pedicure</li>
+            <li>Gel Nails</li>
+          </ul>
+          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20pedicure%20or%20gel%20nails" target="_blank" rel="noopener" class="btn-ghost dark">Book via WhatsApp</a>
+        </div>
+      </div>
+      <div class="svc-item">
+        <button class="plain-row" type="button" aria-expanded="false">
+          <span>Aqua Treatment</span><span class="toggle">&#43;</span>
+        </button>
+        <div class="svc-panel">
+          <ul>
+            <li>Aqua Treatment</li>
+          </ul>
+          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20aqua%20treatment" target="_blank" rel="noopener" class="btn-ghost dark">Book via WhatsApp</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -466,6 +520,24 @@
   track.addEventListener('mouseleave', startAuto);
   track.addEventListener('touchstart', function(){ clearInterval(autoTimer); }, {passive: true});
   startAuto();
+})();
+
+(function(){
+  var items = document.querySelectorAll('#svcAccordion .svc-item');
+  items.forEach(function(item){
+    var btn = item.querySelector('.plain-row');
+    btn.addEventListener('click', function(){
+      var isOpen = item.getAttribute('data-open') === 'true';
+      items.forEach(function(other){
+        other.setAttribute('data-open', 'false');
+        other.querySelector('.plain-row').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.setAttribute('data-open', 'true');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 })();
 </script>
 

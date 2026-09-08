@@ -58,13 +58,6 @@
     content:'';position:absolute;inset:0;
     background:linear-gradient(0deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.05) 42%, rgba(10,9,8,0.02) 100%);
   }
-  .hero-ghost{
-    position:absolute;top:3%;left:50%;transform:translateX(-50%);
-    font-family:'Archivo Expanded',sans-serif;font-weight:700;
-    font-size:min(11vw,140px);letter-spacing:0.02em;text-transform:uppercase;
-    color:transparent;-webkit-text-stroke:1px rgba(243,239,231,0.32);
-    white-space:nowrap;z-index:1;pointer-events:none;line-height:1;
-  }
   .hero-content{
     position:absolute;left:0;right:0;bottom:56px;z-index:2;
     display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;
@@ -113,12 +106,14 @@
   /* ---------- TRENDING ---------- */
   .trending{padding:100px 0 60px;}
   .trending-grid{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:44px;}
-  .trending-card figure{aspect-ratio:4/3;overflow:hidden;margin-bottom:22px;}
-  .trending-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
-  .trending-card:hover img{transform:scale(1.04);}
   .trending-card .eyebrow{display:block;margin-bottom:10px;}
   .trending-card h3{font-size:23px;font-weight:400;margin-bottom:12px;color:var(--ink);}
   .trending-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.7;}
+  .style-gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0 4px;}
+  .style-tile figure{aspect-ratio:1/1;overflow:hidden;margin-bottom:10px;border-radius:2px;}
+  .style-tile img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
+  .style-tile:hover img{transform:scale(1.06);}
+  .style-tile span{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:0.02em;}
   .trending-more{
     max-height:0;overflow:hidden;opacity:0;
     transition:max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
@@ -191,7 +186,8 @@
 
   /* ---------- SPOTLIGHT ---------- */
   .spotlight{display:grid;grid-template-columns:1fr 1fr;}
-  .spotlight figure{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--ink);}
+  .spotlight-media{display:grid;grid-template-rows:1fr 1fr;gap:2px;aspect-ratio:4/5;overflow:hidden;background:var(--ink);}
+  .spotlight-media figure{position:relative;overflow:hidden;}
   .spotlight img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08);}
   .spotlight-copy{
     background:var(--ink);color:var(--cream);
@@ -258,7 +254,6 @@
     <img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural" class="hero-slide" style="object-position:55% 30%;">
     <img src="assets/moi/signage-mural.jpg" alt="Moi Salon backlit storefront signage and mural" class="hero-slide" style="object-position:50% 25%;">
   </div>
-  <div class="hero-ghost">MOI</div>
   <div class="hero-content">
     <h1>Moi Salon<br>Gahunje</h1>
     <div class="hero-actions">
@@ -285,19 +280,37 @@
     </div>
     <div class="trending-grid reveal">
       <article class="trending-card">
-        <figure><img src="https://images.unsplash.com/photo-1712213396688-c6f2d536671f?auto=format&fit=crop&w=700&q=80" alt="Hair colour and foil highlights in progress"></figure>
         <span class="eyebrow">Colour</span>
         <h3>Foils, Not Filters</h3>
-        <p>Balayage and foils are having a moment again &mdash; but the ask has changed. Fewer clients want a dramatic transformation; more want colour that grows out soft instead of leaving a hard line at the roots.</p>
+        <p>Balayage and foils are having a moment again &mdash; but the ask has changed. Fewer clients want a dramatic transformation; more want colour that grows out soft instead of leaving a hard line at the roots. Two techniques come up most:</p>
+        <div class="style-gallery">
+          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20ask%20about%20balayage" target="_blank" rel="noopener" class="style-tile">
+            <figure><img src="assets/styles/balayage.jpg" alt="Balayage hair colour result"></figure>
+            <span>Balayage</span>
+          </a>
+          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20ask%20about%20copper%20%2F%20auburn%20colour" target="_blank" rel="noopener" class="style-tile">
+            <figure><img src="assets/styles/copper-auburn.jpg" alt="Copper and auburn hair colour"></figure>
+            <span>Copper &amp; Auburn</span>
+          </a>
+        </div>
         <p class="trending-more">The shift is toward fewer, better-placed foils rather than a full head of colour &mdash; it costs less to maintain and still looks intentional eight weeks in. If your last colour left a visible regrowth line within a month, that's usually a placement problem, not a hair problem.</p>
         <button type="button" class="trending-toggle">Read More <span class="toggle">&#43;</span></button>
         <cite>&mdash; Notes from the Moi styling floor</cite>
       </article>
       <article class="trending-card">
-        <figure><img src="https://images.unsplash.com/photo-1647140655214-e4a2d914971f?auto=format&fit=crop&w=700&q=80" alt="Men's precision haircut in progress"></figure>
         <span class="eyebrow">Men's Cuts</span>
         <h3>The Low-Maintenance Fade</h3>
-        <p>The sharp, just-left-the-chair fade is giving way to something that holds its shape longer between visits &mdash; enough length on top to style differently each day.</p>
+        <p>The sharp, just-left-the-chair fade is giving way to something that holds its shape longer between visits &mdash; enough length on top to style differently each day. Two shapes we're cutting most:</p>
+        <div class="style-gallery">
+          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20textured%20crop%20haircut" target="_blank" rel="noopener" class="style-tile">
+            <figure><img src="assets/styles/textured-crop.jpg" alt="Textured crop haircut with fade"></figure>
+            <span>Textured Crop</span>
+          </a>
+          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20slicked-back%20fade%20haircut" target="_blank" rel="noopener" class="style-tile">
+            <figure><img src="assets/styles/slicked-back-fade.jpg" alt="Slicked back pompadour with skin fade"></figure>
+            <span>Slicked-Back Fade</span>
+          </a>
+        </div>
         <p class="trending-more">It's less about one dramatic cut and more about a shape that still looks intentional on day twelve, not just day one. Ask for a fade with room to grow into, not one that only works fresh.</p>
         <button type="button" class="trending-toggle">Read More <span class="toggle">&#43;</span></button>
         <cite>&mdash; Azhan, Hair Stylist</cite>
@@ -413,7 +426,10 @@
 </section>
 
 <div class="spotlight">
-  <figure><img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon styling floor"></figure>
+  <div class="spotlight-media">
+    <figure><img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon styling floor"></figure>
+    <figure><img src="assets/moi/signage-mural.jpg" alt="Moi Salon storefront signage"></figure>
+  </div>
   <div class="spotlight-copy reveal">
     <span class="eyebrow">The Names You'll Hear</span>
     <h2>Azhan. Anish. Deepa. Amol.</h2>

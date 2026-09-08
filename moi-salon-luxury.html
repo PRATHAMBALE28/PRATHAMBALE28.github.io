@@ -98,6 +98,15 @@
     border-right:1px solid var(--line);
   }
   .two-up-label:last-child{border-right:none;}
+  .stat-tile{
+    aspect-ratio:4/5;background:var(--ink);color:var(--cream);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    padding:40px;gap:14px;transition:background 0.3s;
+  }
+  .stat-tile:hover{background:var(--ink-soft);}
+  .stat-num{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:clamp(56px,7vw,84px);line-height:1;}
+  .stat-stars{color:var(--gold);font-size:18px;letter-spacing:3px;}
+  .stat-label{font-size:14px;color:#C9C5BD;line-height:1.6;max-width:220px;}
 
   /* ---------- EDITORIAL BLOCK ---------- */
   .editorial{padding:120px 0;}
@@ -128,20 +137,30 @@
   .plain-row .tag{font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--smoke);font-weight:600;}
   .plain-row:hover{color:var(--gold);cursor:default;}
 
-  /* ---------- REVIEWS MARQUEE ---------- */
+  /* ---------- REVIEWS CAROUSEL ---------- */
   .marquee-section{padding-bottom:56px;}
-  .marquee{overflow:hidden;margin:48px 0 32px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
-  .marquee-track{display:flex;gap:32px;width:max-content;animation:marquee-scroll 34s linear infinite;}
-  .marquee:hover .marquee-track{animation-play-state:paused;}
+  .marquee{position:relative;margin:48px 0 32px;display:flex;align-items:center;gap:16px;}
+  .marquee-track{
+    display:flex;gap:32px;overflow-x:auto;scroll-behavior:smooth;
+    scroll-snap-type:x mandatory;-ms-overflow-style:none;scrollbar-width:none;
+  }
+  .marquee-track::-webkit-scrollbar{display:none;}
   .rev-tile{
-    width:min(420px,80vw);flex-shrink:0;
+    width:min(420px,80vw);flex-shrink:0;scroll-snap-align:start;
     background:var(--cream);padding:32px 30px;border:1px solid var(--line);
   }
   .rev-tile .stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:16px;}
   .rev-tile p{font-size:15px;line-height:1.75;margin-bottom:16px;min-height:105px;}
   .rev-tile cite{font-style:normal;font-size:12.5px;letter-spacing:0.05em;text-transform:uppercase;color:var(--smoke);}
-  @keyframes marquee-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  @media (prefers-reduced-motion: reduce){.marquee-track{animation:none;}}
+  .marquee-arrow{
+    flex-shrink:0;width:44px;height:44px;border-radius:50%;
+    border:1px solid var(--line);background:var(--cream);color:var(--ink);
+    font-size:20px;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background 0.2s, border-color 0.2s;
+  }
+  .marquee-arrow:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+  @media (max-width:640px){.marquee-arrow{display:none;}}
 
   /* ---------- QUOTE BAND ---------- */
   .quote-band{background:var(--stone);padding:110px 0;text-align:center;}
@@ -242,12 +261,16 @@
 </section>
 
 <div class="two-up">
-  <a href="#reviews"><figure><img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural"></figure></a>
-  <a href="#services"><figure><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80" alt="Manicure treatment"></figure></a>
+  <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener"><figure><img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural"></figure></a>
+  <a href="https://www.google.com/maps/search/?api=1&query=Moi+Salon+Gahunje&query_place_id=ChIJMSRpjcGxwjsRvZEol3OvB7E" target="_blank" rel="noopener" class="stat-tile">
+    <span class="stat-num">4.2</span>
+    <span class="stat-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+    <span class="stat-label">150+ Google Reviews<br>&mdash; See why Gahunje comes back</span>
+  </a>
 </div>
 <div class="two-up-labels">
   <div class="two-up-label">The Entrance</div>
-  <div class="two-up-label">Hands &amp; Feet</div>
+  <div class="two-up-label">The Rating</div>
 </div>
 
 <section class="editorial">
@@ -284,7 +307,8 @@
     </div>
   </div>
   <div class="marquee reveal">
-    <div class="marquee-track">
+    <button class="marquee-arrow prev" aria-label="Previous review" type="button">&#8249;</button>
+    <div class="marquee-track" id="revTrack">
       <div class="rev-tile">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>&ldquo;Azhan did an excellent job with my haircut and understood exactly what I was looking for. Professional, and clearly knows his craft.&rdquo;</p>
@@ -296,30 +320,15 @@
         <cite>Snehal S.</cite>
       </div>
       <div class="rev-tile">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>&ldquo;Anish did my hairspa &mdash; it was a very soothing experience. Clean, hygienic salon.&rdquo;</p>
-        <cite>Google Review</cite>
-      </div>
-      <div class="rev-tile" aria-hidden="true">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>&ldquo;Azhan did an excellent job with my haircut and understood exactly what I was looking for. Professional, and clearly knows his craft.&rdquo;</p>
-        <cite>Shikha P.</cite>
-      </div>
-      <div class="rev-tile" aria-hidden="true">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>&ldquo;The friendly and welcoming atmosphere made me feel comfortable the whole visit. Deepa and Amol take such good care of people.&rdquo;</p>
-        <cite>Snehal S.</cite>
-      </div>
-      <div class="rev-tile" aria-hidden="true">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>&ldquo;Anish did my hairspa &mdash; it was a very soothing experience. Clean, hygienic salon.&rdquo;</p>
         <cite>Google Review</cite>
       </div>
     </div>
+    <button class="marquee-arrow next" aria-label="Next review" type="button">&#8250;</button>
   </div>
   <div class="wrap">
     <a href="https://www.google.com/maps/search/?api=1&query=Moi+Salon+Gahunje&query_place_id=ChIJMSRpjcGxwjsRvZEol3OvB7E" target="_blank" rel="noopener" class="btn-ghost dark reveal" style="margin-top:8px;">Read all reviews on Google</a>
-  </div>
   </div>
 </section>
 
@@ -362,6 +371,7 @@
       <div class="foot-col">
         <h4>Visit</h4>
         <p>Shop No. 4, Ground Floor<br>Nawu Imperio, Lodha Belmondo Approach Road<br>Gahunje, Pune 412101</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Moi+Salon+Gahunje&query_place_id=ChIJMSRpjcGxwjsRvZEol3OvB7E" target="_blank" rel="noopener" class="btn-ghost dark" style="margin-top:14px;padding:11px 18px;font-size:11.5px;">Visit Now &mdash; Get Directions</a>
       </div>
       <div class="foot-col">
         <h4>Contact</h4>
@@ -400,6 +410,45 @@
     });
   }, {threshold: 0.15});
   els.forEach(function(el){ io.observe(el); });
+})();
+
+(function(){
+  var track = document.getElementById('revTrack');
+  if (!track) return;
+  var prevBtn = document.querySelector('.marquee-arrow.prev');
+  var nextBtn = document.querySelector('.marquee-arrow.next');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function step(dir){
+    var tile = track.querySelector('.rev-tile');
+    if (!tile) return;
+    var amount = tile.getBoundingClientRect().width + 32;
+    var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    if (dir > 0 && atEnd) {
+      track.scrollTo({left: 0, behavior: 'smooth'});
+    } else if (dir < 0 && track.scrollLeft <= 4) {
+      track.scrollTo({left: track.scrollWidth, behavior: 'smooth'});
+    } else {
+      track.scrollBy({left: amount * dir, behavior: 'smooth'});
+    }
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', function(){ step(-1); resetAuto(); });
+  if (nextBtn) nextBtn.addEventListener('click', function(){ step(1); resetAuto(); });
+
+  var autoTimer;
+  function startAuto(){
+    if (reduce) return;
+    autoTimer = setInterval(function(){ step(1); }, 4500);
+  }
+  function resetAuto(){
+    clearInterval(autoTimer);
+    startAuto();
+  }
+  track.addEventListener('mouseenter', function(){ clearInterval(autoTimer); });
+  track.addEventListener('mouseleave', startAuto);
+  track.addEventListener('touchstart', function(){ clearInterval(autoTimer); }, {passive: true});
+  startAuto();
 })();
 </script>
 

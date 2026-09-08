@@ -112,12 +112,26 @@
 
   /* ---------- TRENDING ---------- */
   .trending{padding:100px 0 60px;}
-  .trending-grid{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  .trending-grid{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:44px;}
   .trending-card figure{aspect-ratio:4/3;overflow:hidden;margin-bottom:22px;}
   .trending-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
   .trending-card:hover img{transform:scale(1.04);}
-  .trending-card h3{font-size:22px;font-weight:400;margin-bottom:8px;color:var(--ink);}
-  .trending-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;}
+  .trending-card .eyebrow{display:block;margin-bottom:10px;}
+  .trending-card h3{font-size:23px;font-weight:400;margin-bottom:12px;color:var(--ink);}
+  .trending-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.7;}
+  .trending-more{
+    max-height:0;overflow:hidden;opacity:0;
+    transition:max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
+  }
+  .trending-card[data-open="true"] .trending-more{max-height:220px;opacity:1;margin-top:14px;}
+  .trending-toggle{
+    margin-top:16px;display:inline-flex;align-items:center;gap:8px;
+    background:none;border:none;padding:0;cursor:pointer;
+    font-family:inherit;font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);
+  }
+  .trending-toggle .toggle{font-size:1.1em;transition:transform 0.25s;}
+  .trending-card[data-open="true"] .trending-toggle .toggle{transform:rotate(135deg);}
+  .trending-card cite{display:block;margin-top:16px;font-style:normal;font-size:12.5px;color:var(--smoke);letter-spacing:0.03em;}
   @media (max-width:700px){.trending-grid{grid-template-columns:1fr;}}
 
   /* ---------- LIST SECTION ---------- */
@@ -266,21 +280,30 @@
 <section class="trending">
   <div class="wrap">
     <div class="list-head reveal">
-      <h2>Trending Now</h2>
-      <span>Ask for these by name</span>
+      <h2>The Edit</h2>
+      <span>Notes From The Styling Floor</span>
     </div>
     <div class="trending-grid reveal">
-      <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20ask%20about%20a%20colour%20%2F%20balayage%20service" target="_blank" rel="noopener" class="trending-card">
+      <article class="trending-card">
         <figure><img src="https://images.unsplash.com/photo-1712213396688-c6f2d536671f?auto=format&fit=crop&w=700&q=80" alt="Hair colour and foil highlights in progress"></figure>
-        <h3>Dimensional Colour</h3>
-        <p>Foils and balayage that grow out soft, not stripy.</p>
-      </a>
-      <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20men%27s%20haircut" target="_blank" rel="noopener" class="trending-card">
+        <span class="eyebrow">Colour</span>
+        <h3>Foils, Not Filters</h3>
+        <p>Balayage and foils are having a moment again &mdash; but the ask has changed. Fewer clients want a dramatic transformation; more want colour that grows out soft instead of leaving a hard line at the roots.</p>
+        <p class="trending-more">The shift is toward fewer, better-placed foils rather than a full head of colour &mdash; it costs less to maintain and still looks intentional eight weeks in. If your last colour left a visible regrowth line within a month, that's usually a placement problem, not a hair problem.</p>
+        <button type="button" class="trending-toggle">Read More <span class="toggle">&#43;</span></button>
+        <cite>&mdash; Notes from the Moi styling floor</cite>
+      </article>
+      <article class="trending-card">
         <figure><img src="https://images.unsplash.com/photo-1647140655214-e4a2d914971f?auto=format&fit=crop&w=700&q=80" alt="Men's precision haircut in progress"></figure>
-        <h3>Precision Fades</h3>
-        <p>Sharp, clean lines &mdash; scissor and clipper work in the same chair.</p>
-      </a>
+        <span class="eyebrow">Men's Cuts</span>
+        <h3>The Low-Maintenance Fade</h3>
+        <p>The sharp, just-left-the-chair fade is giving way to something that holds its shape longer between visits &mdash; enough length on top to style differently each day.</p>
+        <p class="trending-more">It's less about one dramatic cut and more about a shape that still looks intentional on day twelve, not just day one. Ask for a fade with room to grow into, not one that only works fresh.</p>
+        <button type="button" class="trending-toggle">Read More <span class="toggle">&#43;</span></button>
+        <cite>&mdash; Azhan, Hair Stylist</cite>
+      </article>
     </div>
+    <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener" class="btn-ghost dark reveal" style="margin-top:12px;">Book an Appointment</a>
   </div>
 </section>
 
@@ -461,6 +484,19 @@
         item.setAttribute('data-open', 'true');
         btn.setAttribute('aria-expanded', 'true');
       }
+    });
+  });
+})();
+
+(function(){
+  var cards = document.querySelectorAll('.trending-card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.trending-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.getAttribute('data-open') === 'true';
+      card.setAttribute('data-open', isOpen ? 'false' : 'true');
+      btn.firstChild.textContent = isOpen ? 'Read More ' : 'Read Less ';
     });
   });
 })();

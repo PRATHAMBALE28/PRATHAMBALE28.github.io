@@ -48,8 +48,12 @@
 
   /* ---------- HERO ---------- */
   .hero{position:relative;height:92vh;min-height:600px;max-height:820px;overflow:hidden;background:var(--ink);}
-  .hero-media{position:relative;width:100%;height:100%;max-width:1500px;margin:0 auto;}
-  .hero-media img{width:100%;height:100%;object-fit:cover;object-position:15% 62%;}
+  .hero-media{position:relative;width:100%;height:100%;max-width:1800px;margin:0 auto;}
+  .hero-slide{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0;transition:opacity 1.4s ease;
+  }
+  .hero-slide.is-active{opacity:1;}
   .hero::after{
     content:'';position:absolute;inset:0;
     background:linear-gradient(0deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.05) 42%, rgba(10,9,8,0.02) 100%);
@@ -268,8 +272,9 @@
 </header>
 
 <section class="hero">
-  <div class="hero-media">
-    <img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon backlit oval mirror styling stations">
+  <div class="hero-media" id="heroSlides">
+    <img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon backlit oval mirror styling stations" class="hero-slide is-active" style="object-position:15% 62%;">
+    <img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural" class="hero-slide" style="object-position:55% 30%;">
   </div>
   <div class="hero-ghost">MOI</div>
   <div class="hero-ghost second">MOI</div>
@@ -538,6 +543,19 @@
       }
     });
   });
+})();
+
+(function(){
+  var slides = document.querySelectorAll('#heroSlides .hero-slide');
+  if (slides.length < 2) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var i = 0;
+  setInterval(function(){
+    slides[i].classList.remove('is-active');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('is-active');
+  }, 5000);
 })();
 </script>
 

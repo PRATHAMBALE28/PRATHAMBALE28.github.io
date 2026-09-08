@@ -144,6 +144,10 @@
     transition:max-height 0.35s ease, padding 0.35s ease;
   }
   .svc-item[data-open="true"] .svc-panel{max-height:220px;padding-bottom:30px;}
+  @media (hover:hover){
+    .svc-item:hover .toggle{transform:rotate(135deg);}
+    .svc-item:hover .svc-panel{max-height:220px;padding-bottom:30px;}
+  }
   .svc-panel ul{list-style:none;margin-bottom:20px;display:flex;flex-direction:column;gap:8px;}
   .svc-panel li{font-size:15px;color:var(--ink-soft);padding-left:16px;position:relative;}
   .svc-panel li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--gold);}
@@ -240,6 +244,7 @@
   <div class="hero-media" id="heroSlides">
     <img src="assets/moi/oval-mirror-stations.jpg" alt="Moi Salon backlit oval mirror styling stations" class="hero-slide is-active" style="object-position:15% 62%;">
     <img src="assets/moi/entrance-staircase.jpg" alt="Moi Salon entrance staircase and signature mural" class="hero-slide" style="object-position:55% 30%;">
+    <img src="assets/moi/signage-mural.jpg" alt="Moi Salon backlit storefront signage and mural" class="hero-slide" style="object-position:50% 25%;">
   </div>
   <div class="hero-ghost">MOI</div>
   <div class="hero-ghost second">MOI</div>
@@ -355,11 +360,17 @@
         <blockquote>&ldquo;Anish did my hairspa &mdash; it was a very soothing experience. Clean, hygienic salon.&rdquo;</blockquote>
         <cite>Google Review</cite>
       </div>
+      <div class="quote-slide">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>&ldquo;I got waxing, threading and manicure pedicure as well as haircut done from her!!&rdquo;</blockquote>
+        <cite>Google Review</cite>
+      </div>
     </div>
     <div class="quote-dots" id="reviewDots">
       <button type="button" class="quote-dot is-active" aria-label="Review 1"></button>
       <button type="button" class="quote-dot" aria-label="Review 2"></button>
       <button type="button" class="quote-dot" aria-label="Review 3"></button>
+      <button type="button" class="quote-dot" aria-label="Review 4"></button>
     </div>
     <a href="https://www.google.com/maps/search/?api=1&query=Moi+Salon+Gahunje&query_place_id=ChIJMSRpjcGxwjsRvZEol3OvB7E" target="_blank" rel="noopener" class="btn-ghost dark">Read all reviews on Google</a>
   </div>

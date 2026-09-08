@@ -110,10 +110,37 @@
   .trending-card h3{font-size:23px;font-weight:400;margin-bottom:12px;color:var(--ink);}
   .trending-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.7;}
   .style-gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0 4px;}
+  .style-tile{
+    display:block;width:100%;background:none;border:none;padding:0;margin:0;
+    text-align:left;font-family:inherit;cursor:pointer;
+  }
   .style-tile figure{aspect-ratio:1/1;overflow:hidden;margin-bottom:10px;border-radius:2px;}
   .style-tile img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
   .style-tile:hover img{transform:scale(1.06);}
   .style-tile span{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:0.02em;}
+
+  /* ---------- LOOKBOOK MODAL ---------- */
+  .lookbook{
+    position:fixed;inset:0;z-index:100;background:rgba(20,19,17,0.82);
+    display:none;align-items:center;justify-content:center;padding:24px;
+  }
+  .lookbook.is-open{display:flex;}
+  .lookbook-inner{
+    position:relative;background:var(--cream);max-width:640px;width:100%;
+    max-height:88vh;overflow-y:auto;padding:44px;
+  }
+  .lookbook-close{
+    position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--line);background:var(--cream);font-size:20px;line-height:1;
+    cursor:pointer;color:var(--ink);
+  }
+  .lookbook-inner .eyebrow{display:block;margin-bottom:10px;}
+  .lookbook-inner h3{font-size:26px;font-weight:400;margin-bottom:28px;}
+  .lookbook-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;}
+  .lookbook-grid figure{margin:0;}
+  .lookbook-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:2px;margin-bottom:12px;}
+  .lookbook-grid figcaption{font-size:13px;color:var(--ink-soft);line-height:1.6;}
+  @media (max-width:600px){.lookbook-grid{grid-template-columns:1fr;}.lookbook-inner{padding:32px 24px;}}
   .trending-more{
     max-height:0;overflow:hidden;opacity:0;
     transition:max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
@@ -284,14 +311,14 @@
         <h3>Foils, Not Filters</h3>
         <p>Balayage and foils are having a moment again &mdash; but the ask has changed. Fewer clients want a dramatic transformation; more want colour that grows out soft instead of leaving a hard line at the roots. Two techniques come up most:</p>
         <div class="style-gallery">
-          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20ask%20about%20balayage" target="_blank" rel="noopener" class="style-tile">
+          <button type="button" class="style-tile" data-modal="colour">
             <figure><img src="assets/styles/balayage.jpg" alt="Balayage hair colour result"></figure>
             <span>Balayage</span>
-          </a>
-          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20ask%20about%20copper%20%2F%20auburn%20colour" target="_blank" rel="noopener" class="style-tile">
+          </button>
+          <button type="button" class="style-tile" data-modal="colour">
             <figure><img src="assets/styles/copper-auburn.jpg" alt="Copper and auburn hair colour"></figure>
             <span>Copper &amp; Auburn</span>
-          </a>
+          </button>
         </div>
         <p class="trending-more">The shift is toward fewer, better-placed foils rather than a full head of colour &mdash; it costs less to maintain and still looks intentional eight weeks in. If your last colour left a visible regrowth line within a month, that's usually a placement problem, not a hair problem.</p>
         <button type="button" class="trending-toggle">Read More <span class="toggle">&#43;</span></button>
@@ -302,14 +329,14 @@
         <h3>The Low-Maintenance Fade</h3>
         <p>The sharp, just-left-the-chair fade is giving way to something that holds its shape longer between visits &mdash; enough length on top to style differently each day. Two shapes we're cutting most:</p>
         <div class="style-gallery">
-          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20textured%20crop%20haircut" target="_blank" rel="noopener" class="style-tile">
+          <button type="button" class="style-tile" data-modal="mens">
             <figure><img src="assets/styles/textured-crop.jpg" alt="Textured crop haircut with fade"></figure>
             <span>Textured Crop</span>
-          </a>
-          <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20slicked-back%20fade%20haircut" target="_blank" rel="noopener" class="style-tile">
+          </button>
+          <button type="button" class="style-tile" data-modal="mens">
             <figure><img src="assets/styles/slicked-back-fade.jpg" alt="Slicked back pompadour with skin fade"></figure>
             <span>Slicked-Back Fade</span>
-          </a>
+          </button>
         </div>
         <p class="trending-more">It's less about one dramatic cut and more about a shape that still looks intentional on day twelve, not just day one. Ask for a fade with room to grow into, not one that only works fresh.</p>
         <button type="button" class="trending-toggle">Read More <span class="toggle">&#43;</span></button>
@@ -468,6 +495,44 @@
   </div>
 </footer>
 
+<div class="lookbook" id="modalColour" role="dialog" aria-modal="true" aria-label="Colour trends">
+  <div class="lookbook-inner">
+    <button type="button" class="lookbook-close" aria-label="Close">&times;</button>
+    <span class="eyebrow">Colour Trends</span>
+    <h3>A Few Ways To Wear It</h3>
+    <div class="lookbook-grid">
+      <figure>
+        <img src="assets/styles/balayage.jpg" alt="Balayage hair colour result">
+        <figcaption>Balayage &mdash; hand-painted colour that grows out soft, no hard regrowth line.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/styles/copper-auburn.jpg" alt="Copper and auburn hair colour">
+        <figcaption>Copper &amp; Auburn &mdash; warm, rich tone that reads different in every light.</figcaption>
+      </figure>
+    </div>
+    <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20ask%20about%20a%20colour%20service" target="_blank" rel="noopener" class="btn-solid">Book a Colour Consult</a>
+  </div>
+</div>
+
+<div class="lookbook" id="modalMens" role="dialog" aria-modal="true" aria-label="Men's cut trends">
+  <div class="lookbook-inner">
+    <button type="button" class="lookbook-close" aria-label="Close">&times;</button>
+    <span class="eyebrow">Men's Cut Trends</span>
+    <h3>A Few Ways To Wear It</h3>
+    <div class="lookbook-grid">
+      <figure>
+        <img src="assets/styles/textured-crop.jpg" alt="Textured crop haircut with fade">
+        <figcaption>Textured Crop &mdash; a hard part and low fade, styled forward for texture on top.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/styles/slicked-back-fade.jpg" alt="Slicked back pompadour with skin fade">
+        <figcaption>Slicked-Back Fade &mdash; a clean skin fade under a longer, combed-back top.</figcaption>
+      </figure>
+    </div>
+    <a href="https://wa.me/918526055555?text=Hi%20Moi%20Salon%2C%20I%27d%20like%20to%20book%20a%20men%27s%20haircut" target="_blank" rel="noopener" class="btn-solid">Book a Haircut</a>
+  </div>
+</div>
+
 <script>
 (function(){
   var els = document.querySelectorAll('.reveal');
@@ -514,6 +579,35 @@
       card.setAttribute('data-open', isOpen ? 'false' : 'true');
       btn.firstChild.textContent = isOpen ? 'Read More ' : 'Read Less ';
     });
+  });
+})();
+
+(function(){
+  var modals = {
+    colour: document.getElementById('modalColour'),
+    mens: document.getElementById('modalMens')
+  };
+  document.querySelectorAll('.style-tile[data-modal]').forEach(function(tile){
+    tile.addEventListener('click', function(){
+      var modal = modals[tile.getAttribute('data-modal')];
+      if (modal) modal.classList.add('is-open');
+    });
+  });
+  Object.values(modals).forEach(function(modal){
+    if (!modal) return;
+    modal.querySelector('.lookbook-close').addEventListener('click', function(){
+      modal.classList.remove('is-open');
+    });
+    modal.addEventListener('click', function(e){
+      if (e.target === modal) modal.classList.remove('is-open');
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') {
+      Object.values(modals).forEach(function(modal){
+        if (modal) modal.classList.remove('is-open');
+      });
+    }
   });
 })();
 

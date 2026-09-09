@@ -162,6 +162,10 @@
     position:absolute;left:14px;right:14px;bottom:14px;z-index:2;color:var(--white);
     font-size:13px;font-weight:700;line-height:1.4;
   }
+  .insta-more{background:var(--yellow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:none;}
+  .insta-more .more-mark{font-family:'Anton',sans-serif;font-size:46px;color:var(--black);}
+  .insta-more .more-txt{color:var(--black);font-weight:800;font-size:14px;text-align:center;text-transform:uppercase;line-height:1.4;}
+  .insta-more::after{display:none;}
   @media (max-width:820px){.insta-embed-grid{grid-template-columns:1fr 1fr;}}
   @media (max-width:540px){.insta-embed-grid{grid-template-columns:1fr;}}
   @media (max-width:820px){.insta-embed-grid{grid-template-columns:1fr;}}
@@ -330,15 +334,14 @@
         <span class="play">▶</span>
         <span class="insta-cap">Treadmill session on the floor</span>
       </a>
-      <a class="insta-post" href="https://www.instagram.com/kfitnessbalewadi/reel/DbW6cNrMWYd/" target="_blank" rel="noopener">
-        <img src="assets/kfitness/insta-2.jpg" alt="K Fitness Balewadi Instagram reel, July 2026">
-        <span class="play">▶</span>
-        <span class="insta-cap">K Fitness Balewadi</span>
-      </a>
       <a class="insta-post" href="https://www.instagram.com/kfitnessbalewadi/reel/DaxdodiAqZ3/" target="_blank" rel="noopener">
         <img src="assets/kfitness/insta-3.jpg" alt="K Fitness Balewadi Instagram reel: trainer helping a member with wrist wraps, July 2026">
         <span class="play">▶</span>
         <span class="insta-cap">"You are not competing with others..."</span>
+      </a>
+      <a class="insta-post insta-more" href="https://www.instagram.com/kfitnessbalewadi/" target="_blank" rel="noopener">
+        <span class="more-mark">@</span>
+        <span class="more-txt">See more on<br>Instagram</span>
       </a>
     </div>
   </div>

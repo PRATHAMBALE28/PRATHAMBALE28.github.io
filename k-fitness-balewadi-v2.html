@@ -117,7 +117,7 @@
   /* HERO */
   .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding-top:90px;overflow:hidden;}
   .hero-media{position:absolute;inset:-60px 0 0 0;overflow:hidden;will-change:transform;}
-  .hero-media video{width:100%;height:calc(100% + 60px);object-fit:cover;filter:grayscale(0.15) contrast(1.1);}
+  .hero-media video{width:100%;height:calc(100% + 60px);object-fit:cover;}
   .hero-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.35) 50%, rgba(10,10,10,0.95) 96%);}
   .hero-content{position:relative;z-index:2;width:100%;padding:0 40px 60px;max-width:1200px;margin:0 auto;}
   @media (max-width:700px){.hero-content{padding:0 26px 44px;}}
@@ -243,6 +243,20 @@
   .footer-col .k{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--white);opacity:0.5;margin-bottom:8px;letter-spacing:0.06em;}
   .footer-col .v{font-size:13.5px;color:var(--white);line-height:1.85;font-weight:600;}
   .footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:#a8a496;font-weight:600;text-transform:uppercase;}
+
+  /* MOBILE REFINEMENTS */
+  @media (max-width:700px){
+    section{padding:60px 0;}
+    .stat-block{padding:20px 16px;}
+    .stat-block .n{font-size:34px;}
+    .cta-banner{padding:60px 22px;}
+    .footer-cols{gap:30px;}
+  }
+  @media (max-width:480px){
+    .gallery-side{flex-direction:column;}
+    .stat-grid{grid-template-columns:1fr 1fr;}
+    .hero-ctas .btn{flex:1 1 auto;justify-content:center;}
+  }
 </style>
 </head>
 <body>
@@ -313,16 +327,16 @@
     <h2 class="sec-title reveal">The floor, <span class="hl">up close.</span></h2>
     <div class="gallery">
       <div class="frame" style="aspect-ratio:5/4;">
-        <img src="assets/kfitness/gym-floor-wide.jpg" alt="Strength training floor at K Fitness Balewadi with adjustable benches and rack machines">
+        <img src="assets/kfitness/gym-floor-wide.jpg" alt="Strength training floor at K Fitness Balewadi with adjustable benches and rack machines" loading="lazy" decoding="async" width="1600" height="1067">
         <div class="cap">The Floor</div>
       </div>
       <div class="gallery-side">
         <div class="frame">
-          <img src="assets/kfitness/dumbbell-rack.jpg" alt="Full dumbbell rack up to 40kg at K Fitness gym in Balewadi, Pune">
+          <img src="assets/kfitness/dumbbell-rack.jpg" alt="Full dumbbell rack up to 40kg at K Fitness gym in Balewadi, Pune" loading="lazy" decoding="async" width="900" height="675">
           <div class="cap">Free Weights</div>
         </div>
         <div class="frame">
-          <img src="assets/kfitness/exterior-signage.jpg" alt="K Fitness Balewadi storefront signage, Gravity Complex, Balewadi, Pune">
+          <img src="assets/kfitness/exterior-signage.jpg" alt="K Fitness Balewadi storefront signage, Gravity Complex, Balewadi, Pune" loading="lazy" decoding="async" width="900" height="675">
           <div class="cap">Find Us</div>
         </div>
       </div>
@@ -414,17 +428,17 @@
     </div>
     <div class="insta-embed-grid">
       <a class="insta-post" href="https://www.instagram.com/reel/DaD2PuMIHYV/" target="_blank" rel="noopener">
-        <img src="assets/kfitness/insta-4.jpg" alt="K Fitness Balewadi Instagram reel: trainer physique, shared by @madan.deshmukh_">
+        <img src="assets/kfitness/insta-4.jpg" alt="K Fitness Balewadi Instagram reel: trainer physique, shared by @madan.deshmukh_" loading="lazy" decoding="async" width="360" height="640">
         <span class="play">▶</span>
         <span class="insta-cap">Meet the trainer.<small>@madan.deshmukh_</small></span>
       </a>
       <a class="insta-post" href="https://www.instagram.com/reel/DZnGoP9oP3-/" target="_blank" rel="noopener">
-        <img src="assets/kfitness/insta-5.jpg" alt="K Fitness Balewadi Instagram reel: member deadlifting, shared by @apurvananiwadekar">
+        <img src="assets/kfitness/insta-5.jpg" alt="K Fitness Balewadi Instagram reel: member deadlifting, shared by @apurvananiwadekar" loading="lazy" decoding="async" width="360" height="640">
         <span class="play">▶</span>
         <span class="insta-cap">"If it was easy, everyone would be doing it."<small>@apurvananiwadekar</small></span>
       </a>
       <a class="insta-post" href="https://www.instagram.com/reel/DcndRXpgeav/" target="_blank" rel="noopener">
-        <img src="assets/kfitness/insta-6.jpg" alt="K Fitness Balewadi Instagram reel: dumbbell workout, shared by @madan.deshmukh_">
+        <img src="assets/kfitness/insta-6.jpg" alt="K Fitness Balewadi Instagram reel: dumbbell workout, shared by @madan.deshmukh_" loading="lazy" decoding="async" width="360" height="640">
         <span class="play">▶</span>
         <span class="insta-cap">"1% better."<small>@madan.deshmukh_</small></span>
       </a>
@@ -541,24 +555,35 @@
     spotlight.addEventListener('mouseleave', restart);
   }
 
-  // Cursor-reactive glow on buttons
+  // Cursor-reactive glow on buttons (rAF-throttled to avoid layout thrash)
   if (!reduceMotion) {
     document.querySelectorAll('.btn').forEach(function(btn){
+      var glowTicking = false, lastEvent = null;
       btn.addEventListener('mousemove', function(e){
-        var r = btn.getBoundingClientRect();
-        btn.style.setProperty('--gx', (e.clientX - r.left) + 'px');
-        btn.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+        lastEvent = e;
+        if (glowTicking) return;
+        glowTicking = true;
+        requestAnimationFrame(function(){
+          var r = btn.getBoundingClientRect();
+          btn.style.setProperty('--gx', (lastEvent.clientX - r.left) + 'px');
+          btn.style.setProperty('--gy', (lastEvent.clientY - r.top) + 'px');
+          glowTicking = false;
+        });
       });
     });
   }
 
-  // Sticky-scroll parallax on hero video
+  // Sticky-scroll parallax on hero video - and pause the video entirely
+  // once it's off-screen, since a decoding/compositing video is the single
+  // biggest cost to scroll smoothness on the rest of the page.
   var heroMedia = document.querySelector('.hero-media');
   var hero = document.querySelector('.hero');
-  if (heroMedia && hero && !reduceMotion) {
+  var heroVideo = hero ? hero.querySelector('video') : null;
+  if (heroMedia && hero) {
+    var heroVisible = true;
     var ticking = false;
-    window.addEventListener('scroll', function(){
-      if (ticking) return;
+    var onScroll = function(){
+      if (ticking || !heroVisible || reduceMotion) return;
       ticking = true;
       requestAnimationFrame(function(){
         var rect = hero.getBoundingClientRect();
@@ -566,7 +591,22 @@
         heroMedia.style.transform = 'translateY(' + (progress * 60) + 'px)';
         ticking = false;
       });
-    }, {passive: true});
+    };
+    window.addEventListener('scroll', onScroll, {passive: true});
+
+    if ('IntersectionObserver' in window && heroVideo) {
+      var heroIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          heroVisible = entry.isIntersecting;
+          if (entry.isIntersecting) {
+            heroVideo.play().catch(function(){});
+          } else {
+            heroVideo.pause();
+          }
+        });
+      }, {threshold: 0});
+      heroIo.observe(hero);
+    }
   }
 
   // Scroll-reveal for section headers and cards

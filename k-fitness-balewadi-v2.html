@@ -142,6 +142,12 @@
   .marquee{background:var(--yellow);color:var(--black);border-top:4px solid var(--black);border-bottom:4px solid var(--black);padding:14px 0;overflow:hidden;white-space:nowrap;}
   .marquee-track{display:inline-block;animation:scroll 38s linear infinite;font-family:'Anton',sans-serif;font-size:20px;text-transform:uppercase;will-change:transform;}
   .marquee-track span{margin:0 28px;}
+  @media (prefers-reduced-motion: reduce){
+    .marquee{white-space:normal;padding:16px 20px;}
+    .marquee-track{display:flex;flex-wrap:wrap;gap:10px 24px;animation:none !important;}
+    .marquee-track span{margin:0;}
+    .marquee-track span:nth-child(n+8){display:none;}
+  }
   @media (hover:hover) and (pointer:fine){
     .marquee:hover .marquee-track{animation-play-state:paused;}
   }

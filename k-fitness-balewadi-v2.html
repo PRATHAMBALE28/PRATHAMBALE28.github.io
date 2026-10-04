@@ -191,6 +191,29 @@
   .price-card.featured .price-amt{color:var(--black);}
   .price-amt span{font-size:14px;font-weight:600;opacity:0.6;}
   .price-card .btn{margin-top:20px;text-align:center;justify-content:center;font-size:12px;padding:12px 16px;}
+  .price-card{font:inherit;text-align:left;color:inherit;cursor:pointer;width:100%;}
+  .price-pick{margin-top:18px;font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;opacity:0.65;}
+  .price-card.selected{border-color:var(--yellow);box-shadow:0 0 0 2px var(--yellow);}
+  .price-card.selected .price-pick{opacity:1;color:var(--yellow);}
+  .price-card.featured.selected{box-shadow:0 0 0 3px var(--black),0 0 0 6px var(--yellow);}
+  .price-card.featured.selected .price-pick{color:var(--black);}
+  .price-card:focus-visible{outline:3px solid var(--white);outline-offset:3px;}
+  .plan-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;}
+  .plan-panel.open{grid-template-rows:1fr;}
+  .plan-panel-inner{overflow:hidden;}
+  .plan-box{margin-top:22px;border:2px solid var(--yellow);background:#111;padding:26px 28px;}
+  .plan-box-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .plan-kicker{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;opacity:0.6;}
+  .plan-title{font-family:'Anton',sans-serif;font-size:clamp(28px,4vw,40px);text-transform:uppercase;color:var(--yellow);margin-top:6px;line-height:1.05;}
+  .plan-sub{font-size:13.5px;color:#c9c5b8;margin-top:6px;font-weight:600;}
+  .plan-close{background:none;border:1px solid var(--border);color:var(--white);width:36px;height:36px;font-size:22px;line-height:1;cursor:pointer;flex:none;}
+  .plan-close:hover{border-color:var(--yellow);color:var(--yellow);}
+  .plan-incl{list-style:none;padding:0;margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;}
+  .plan-incl li{font-size:13.5px;color:#c9c5b8;font-weight:600;padding-left:22px;position:relative;}
+  .plan-incl li::before{content:'✓';position:absolute;left:0;color:var(--yellow);font-weight:800;}
+  .plan-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;}
+  .plan-note{margin-top:14px;font-size:12px;color:#9d998c;font-weight:500;}
+  @media (max-width:600px){.plan-incl{grid-template-columns:1fr;}.plan-ctas .btn{flex:1 1 100%;justify-content:center;text-align:center;}.plan-box{padding:22px 20px;}}
   .pt-note{margin-top:24px;border:1px dashed var(--border);padding:18px 22px;font-size:13.5px;color:#c9c5b8;font-weight:600;line-height:1.7;}
   .pt-note b{color:var(--yellow);}
   .included-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 24px;margin-top:28px;list-style:none;padding:0;}
@@ -403,23 +426,52 @@
   <div class="wrap">
     <div class="eyebrow reveal">Membership</div>
     <h2 class="sec-title reveal">Pick a plan, <span class="hl">walk in today.</span></h2>
-    <div class="price-grid">
-      <div class="price-card">
+    <div class="price-grid" role="group" aria-label="Membership plans">
+      <button type="button" class="price-card" data-plan="1 Month" data-price="₹3,500" data-total="3500" data-months="1" aria-pressed="false" aria-controls="planPanel">
         <div class="price-dur">1 Month</div>
         <div class="price-amt">₹3,500</div>
-      </div>
-      <div class="price-card">
+        <div class="price-pick">Select plan →</div>
+      </button>
+      <button type="button" class="price-card" data-plan="3 Months" data-price="₹7,500" data-total="7500" data-months="3" aria-pressed="false" aria-controls="planPanel">
         <div class="price-dur">3 Months</div>
         <div class="price-amt">₹7,500</div>
-      </div>
-      <div class="price-card featured">
+        <div class="price-pick">Select plan →</div>
+      </button>
+      <button type="button" class="price-card featured" data-plan="6 Months" data-price="₹11,500" data-total="11500" data-months="6" aria-pressed="false" aria-controls="planPanel">
         <div class="price-tag">Best Value</div>
         <div class="price-dur">6 Months</div>
         <div class="price-amt">₹11,500</div>
-      </div>
-      <div class="price-card">
+        <div class="price-pick">Select plan →</div>
+      </button>
+      <button type="button" class="price-card" data-plan="12 Months" data-price="₹16,000" data-total="16000" data-months="12" aria-pressed="false" aria-controls="planPanel">
         <div class="price-dur">12 Months</div>
         <div class="price-amt">₹16,000</div>
+        <div class="price-pick">Select plan →</div>
+      </button>
+    </div>
+    <div class="plan-panel" id="planPanel" aria-live="polite">
+      <div class="plan-panel-inner">
+        <div class="plan-box">
+          <div class="plan-box-head">
+            <div>
+              <div class="plan-kicker">Your selected plan</div>
+              <div class="plan-title" id="planTitle">6 Months</div>
+              <div class="plan-sub" id="planSub"></div>
+            </div>
+            <button type="button" class="plan-close" id="planClose" aria-label="Close plan details">×</button>
+          </div>
+          <ul class="plan-incl">
+            <li>Weight training &amp; cardio equipment</li>
+            <li>General trainers on the floor</li>
+            <li>BMI check &amp; free 1st diet consultation</li>
+            <li>Lockers (temporary basis)</li>
+          </ul>
+          <div class="plan-ctas">
+            <a class="btn" id="planCta" href="https://wa.me/917249858783" target="_blank" rel="noopener">Proceed with this plan</a>
+            <a class="btn btn-outline" href="tel:+917249858783">Call to confirm</a>
+          </div>
+          <div class="plan-note">Tapping Proceed opens WhatsApp with your plan already filled in, so the team can confirm joining details.</div>
+        </div>
       </div>
     </div>
     <div class="pt-note"><b>Personal Training</b> — starting from ₹10,000/month, for members who want one-on-one coaching alongside their membership.</div>
@@ -755,6 +807,40 @@
     };
     window.addEventListener('scroll', onHeaderScroll, {passive: true});
     onHeaderScroll();
+  }
+
+  // Membership plan picker: open the chosen plan with a WhatsApp CTA pre-filled for it
+  var planCards = document.querySelectorAll('.price-card[data-plan]');
+  var planPanel = document.getElementById('planPanel');
+  if (planCards.length && planPanel) {
+    var planTitle = document.getElementById('planTitle');
+    var planSub = document.getElementById('planSub');
+    var planCta = document.getElementById('planCta');
+    var planClose = document.getElementById('planClose');
+    var closePlan = function(){
+      planPanel.classList.remove('open');
+      planCards.forEach(function(c){ c.classList.remove('selected'); c.setAttribute('aria-pressed','false'); });
+    };
+    planCards.forEach(function(card){
+      card.addEventListener('click', function(){
+        if (card.classList.contains('selected')) { closePlan(); return; }
+        planCards.forEach(function(c){ c.classList.remove('selected'); c.setAttribute('aria-pressed','false'); });
+        card.classList.add('selected');
+        card.setAttribute('aria-pressed','true');
+        var name = card.getAttribute('data-plan');
+        var price = card.getAttribute('data-price');
+        var months = parseInt(card.getAttribute('data-months'), 10);
+        var total = parseInt(card.getAttribute('data-total'), 10);
+        planTitle.textContent = name + ' \u2014 ' + price;
+        planSub.textContent = months > 1 ? ('Works out to about \u20B9' + Math.round(total / months).toLocaleString('en-IN') + ' per month') : '1 month of membership';
+        var msg = "Hi, I'd like to join K Fitness Balewadi with the " + name + " plan (" + price + "). Please share the next steps.";
+        planCta.href = 'https://wa.me/917249858783?text=' + encodeURIComponent(msg);
+        planCta.textContent = 'Proceed with ' + name + ' plan';
+        planPanel.classList.add('open');
+        if (!reduceMotion) setTimeout(function(){ planPanel.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 120);
+      });
+    });
+    if (planClose) planClose.addEventListener('click', closePlan);
   }
 
   // FAQ accordion

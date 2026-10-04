@@ -44,7 +44,7 @@
   "mainEntity": [
     { "@type": "Question", "name": "Where is K Fitness Balewadi located?", "acceptedAnswer": { "@type": "Answer", "text": "K Fitness Balewadi is at Gravity Complex, A-301, opposite Wisdom Park Society, Balewadi, Pune, Maharashtra 411045." } },
     { "@type": "Question", "name": "What are the opening hours of K Fitness Balewadi?", "acceptedAnswer": { "@type": "Answer", "text": "K Fitness Balewadi is open Monday to Saturday from 6 AM to 10 PM, and Sunday from 7 AM to 12 PM." } },
-    { "@type": "Question", "name": "Does K Fitness Balewadi have personal trainers?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Members frequently credit trainers Suyash Shedge and Roshan Sir by name for hands-on coaching, proper form correction, and personalised fitness guidance." } },
+    { "@type": "Question", "name": "Does K Fitness Balewadi have personal trainers?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Madan Deshmukh (11 years), Roshan Jadhav (5 years) and Shruti S. (2 years) are general and personal trainers at K Fitness Balewadi, available on the floor Morning 6 AM to 11 AM and Evening 5 PM to 10 PM." } },
     { "@type": "Question", "name": "What is K Fitness Balewadi's Google rating?", "acceptedAnswer": { "@type": "Answer", "text": "K Fitness Balewadi holds a 4.8 out of 5 rating from 86 Google reviews, with members most often praising helpful trainers, a motivating atmosphere, and modern equipment." } }
   ]
 }
@@ -200,13 +200,23 @@
   @media (max-width:480px){.price-grid{grid-template-columns:1fr;}.included-list{grid-template-columns:1fr;}}
 
   /* COACHES */
-  .coach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:50px;}
-  .coach-card{background:var(--black);border:1px solid var(--border);padding:34px 28px;position:relative;}
-  .coach-card .num{position:absolute;top:-22px;right:16px;font-family:'Anton',sans-serif;font-size:80px;color:var(--white);opacity:0.06;}
-  .coach-card h3{font-size:32px;color:var(--white);position:relative;z-index:1;}
-  .coach-card .role{display:inline-block;margin-top:10px;margin-bottom:14px;background:var(--yellow);color:var(--black);padding:4px 10px;font-size:11px;font-weight:800;text-transform:uppercase;}
-  .coach-card p{color:#c9c5b8;font-size:14.5px;line-height:1.7;font-weight:500;}
-  @media (max-width:760px){.coach-grid{grid-template-columns:1fr;}}
+  .coach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:50px;}
+  .coach-card{background:var(--black);border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .2s ease,border-color .2s ease;}
+  .coach-card:hover{transform:translateY(-6px);border-color:var(--yellow);}
+  .coach-photo{aspect-ratio:3/4;overflow:hidden;background:#111;}
+  .coach-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s ease;}
+  .coach-card:hover .coach-photo img{transform:scale(1.05);}
+  .coach-body{padding:22px 24px 26px;}
+  .coach-card h3{font-size:30px;color:var(--white);}
+  .coach-card .role{display:inline-block;margin-top:10px;background:var(--yellow);color:var(--black);padding:4px 10px;font-size:11px;font-weight:800;text-transform:uppercase;}
+  .coach-meta{list-style:none;padding:0;margin-top:16px;display:grid;gap:8px;}
+  .coach-meta li{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--border);padding-top:8px;font-size:13px;color:#c9c5b8;font-weight:600;}
+  .coach-meta li span:first-child{text-transform:uppercase;font-size:11px;letter-spacing:0.08em;font-weight:800;opacity:0.6;}
+  .coach-meta li span:last-child{color:var(--white);text-align:right;}
+  .coach-info{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;}
+  .coach-info div{border:1px dashed var(--border);padding:18px 20px;font-size:13.5px;color:#c9c5b8;font-weight:600;line-height:1.6;}
+  .coach-info b{display:block;color:var(--yellow);font-family:'Anton',sans-serif;font-weight:400;font-size:18px;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.02em;}
+  @media (max-width:900px){.coach-grid,.coach-info{grid-template-columns:1fr;}.coach-card{max-width:420px;}}
 
   /* TESTIMONIALS SLIDER */
   /* REVIEW SPOTLIGHT (auto-rotating) */
@@ -348,8 +358,8 @@
 
 <div class="marquee">
   <div class="marquee-track">
-    <span>★ 4.8 GOOGLE RATING</span><span>★ BALEWADI, PUNE</span><span>★ OPEN 6AM–10PM</span><span>★ LARGEST GYM FLOOR IN BALEWADI</span><span>★ MEMBERSHIP FROM ₹3,500</span><span>★ FREE BMI CHECK &amp; DIET CONSULT</span>
-    <span>★ 4.8 GOOGLE RATING</span><span>★ BALEWADI, PUNE</span><span>★ OPEN 6AM–10PM</span><span>★ LARGEST GYM FLOOR IN BALEWADI</span><span>★ MEMBERSHIP FROM ₹3,500</span><span>★ FREE BMI CHECK &amp; DIET CONSULT</span>
+    <span>★ 4.8 GOOGLE RATING</span><span>★ BALEWADI, PUNE</span><span>★ OPEN 6AM–10PM</span><span>★ LARGEST GYM FLOOR IN BALEWADI</span><span>★ MEMBERSHIP FROM ₹3,500</span><span>★ BMI CHECK + FREE DIET CONSULT</span>
+    <span>★ 4.8 GOOGLE RATING</span><span>★ BALEWADI, PUNE</span><span>★ OPEN 6AM–10PM</span><span>★ LARGEST GYM FLOOR IN BALEWADI</span><span>★ MEMBERSHIP FROM ₹3,500</span><span>★ BMI CHECK + FREE DIET CONSULT</span>
   </div>
 </div>
 
@@ -416,7 +426,7 @@
     <ul class="included-list">
       <li>Weight training &amp; cardio equipment</li>
       <li>General trainers on floor (6–11 AM &amp; 5–10 PM)</li>
-      <li>Free BMI check &amp; 1st diet consultation</li>
+      <li>BMI check &amp; free 1st diet consultation</li>
       <li>Lockers (temporary basis)</li>
       <li>Weight gain / loss personal training programs</li>
     </ul>
@@ -430,20 +440,46 @@
 <section id="coaches">
   <div class="wrap">
     <div class="eyebrow reveal">The Coaches</div>
-    <h2 class="sec-title reveal">Trainers members ask <span class="hl">for by name.</span></h2>
+    <h2 class="sec-title reveal">Meet the team <span class="hl">on the floor.</span></h2>
     <div class="coach-grid">
       <div class="coach-card">
-        <div class="num">01</div>
-        <h3>Suyash Shedge</h3>
-        <div class="role">Strength &amp; Form Coaching</div>
-        <p>Named directly by multiple members for his attention to proper form, safe progression, and constant motivation. The gym's own owner calls him "truly an asset" in review replies.</p>
+        <div class="coach-photo"><img src="assets/kfitness/trainer-madan.jpg" alt="Madan Deshmukh, general and personal trainer at K Fitness Balewadi" loading="lazy" decoding="async" width="800" height="1066"></div>
+        <div class="coach-body">
+          <h3>Madan Deshmukh</h3>
+          <div class="role">General &amp; Personal Trainer</div>
+          <ul class="coach-meta">
+            <li><span>Experience</span><span>11 years</span></li>
+            <li><span>Certified by</span><span>Gold Gym</span></li>
+          </ul>
+        </div>
       </div>
       <div class="coach-card">
-        <div class="num">02</div>
-        <h3>Roshan Sir</h3>
-        <div class="role">Personal Training</div>
-        <p>Thanked by members for expert training and genuine support — recommended by name to anyone looking for a coach who tracks real progress, not just attendance.</p>
+        <div class="coach-photo"><img src="assets/kfitness/trainer-roshan.jpg" alt="Roshan Jadhav, general and personal trainer at K Fitness Balewadi" loading="lazy" decoding="async" width="800" height="1066"></div>
+        <div class="coach-body">
+          <h3>Roshan Jadhav</h3>
+          <div class="role">General &amp; Personal Trainer</div>
+          <ul class="coach-meta">
+            <li><span>Experience</span><span>5 years</span></li>
+            <li><span>Certified by</span><span>IFSA</span></li>
+          </ul>
+        </div>
       </div>
+      <div class="coach-card">
+        <div class="coach-photo"><img src="assets/kfitness/trainer-shruti.jpg" alt="Shruti S., general and personal trainer at K Fitness Balewadi" loading="lazy" decoding="async" width="800" height="1066"></div>
+        <div class="coach-body">
+          <h3>Shruti S.</h3>
+          <div class="role">General &amp; Personal Trainer</div>
+          <ul class="coach-meta">
+            <li><span>Experience</span><span>2 years</span></li>
+            <li><span>Certified by</span><span>Golds Gym</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="coach-info">
+      <div><b>On the floor daily</b>General trainers are available Morning 6 AM–11 AM and Evening 5 PM–10 PM.</div>
+      <div><b>Start with a plan</b>A BMI check and a free first diet consultation are part of what is included.</div>
+      <div><b>Want 1-on-1?</b>Personal training starts from ₹10,000/month, with weight gain and weight loss programs.</div>
     </div>
   </div>
 </section>
@@ -543,7 +579,7 @@
     </div>
     <div class="faq-item">
       <button class="faq-q" aria-expanded="false"><span>Does K Fitness Balewadi have personal trainers?</span><span class="faq-icon" aria-hidden="true"></span></button>
-      <div class="faq-a-wrap"><div class="faq-a-inner"><p>Yes — members regularly credit trainers Suyash Shedge and Roshan Sir by name for hands-on coaching, form correction, and personalised guidance.</p></div></div>
+      <div class="faq-a-wrap"><div class="faq-a-inner"><p>Yes — Madan Deshmukh (11 years), Roshan Jadhav (5 years) and Shruti S. (2 years) are general and personal trainers at K Fitness Balewadi, available on the floor Morning 6 AM to 11 AM and Evening 5 PM to 10 PM.</p></div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" aria-expanded="false"><span>What is K Fitness Balewadi's Google rating?</span><span class="faq-icon" aria-hidden="true"></span></button>
